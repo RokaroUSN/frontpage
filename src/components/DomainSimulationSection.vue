@@ -189,7 +189,7 @@ onMounted(() => {
   opacity: 1;
   transition: opacity 0.5s;
   &.faded {
-    opacity: 0;
+    //opacity: 0;
   }
 }
 
