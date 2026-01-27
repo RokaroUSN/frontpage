@@ -10,21 +10,27 @@ export enum Prod {
     B
 }
 
+let productIdCounter = 0;
+
 export class Product {
+    id: number;
     label: string;
     shape: Shape;
     color: string;
     background: string;
+    opacity: number;
 
     animatingRight: boolean;
 
     constructor(label: string, shape: Shape, color: string, background: string) {
+        this.id = productIdCounter++;
         this.label = label;
         this.shape = shape;
         this.color = color;
         this.background = background;
+        this.opacity = 1;
 
-        this.animatingRight = true;
+        this.animatingRight = false;
     }
 
     animateRight() {

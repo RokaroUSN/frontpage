@@ -5,6 +5,8 @@ import {type Product, Shape} from "../Product.ts";
 
 const props = defineProps<{
   product: Product;
+  animSpeed: string;
+
 }>()
 
 </script>
@@ -51,6 +53,6 @@ const props = defineProps<{
 }
 
 .shift-right {
-  animation: shift-right-anim ease-in-out 0.5s;
+  animation: shift-right-anim ease-in-out v-bind(animSpeed);
 }
 </style>

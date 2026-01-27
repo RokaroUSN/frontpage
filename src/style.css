@@ -13,7 +13,7 @@
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Consolas', monospace;
 
-  --header-height: 5rem;
+  --header-height: 84px;
 
   font-family: var(--font-body);
   line-height: 1.6;
