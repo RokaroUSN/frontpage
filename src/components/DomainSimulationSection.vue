@@ -236,8 +236,8 @@ onMounted(() => {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: -2.6rem;
-      right: -2.6rem;
+      left: -1.3rem;
+      right: -1.3rem;
       background: #585a57;
       border-radius: 0.3rem;
       z-index: 10;

@@ -8,10 +8,10 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
-   sodipodi:docname="logo.svg"
-   inkscape:export-filename="logo@1000.png"
-   inkscape:export-xdpi="300.78"
-   inkscape:export-ydpi="300.78"
+   sodipodi:docname="logoTextAsVector.svg"
+   inkscape:export-filename="logo@76.png"
+   inkscape:export-xdpi="22.859037"
+   inkscape:export-ydpi="22.859037"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -29,9 +29,9 @@
      showguides="true"
      inkscape:zoom="2.2265349"
      inkscape:cx="128.67528"
-     inkscape:cy="163.0336"
-     inkscape:window-width="1920"
-     inkscape:window-height="1011"
+     inkscape:cy="163.48273"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -68,26 +68,18 @@
      id="layer2"
      inkscape:label="AreaVersion"
      transform="translate(-7.6521893,-25.979567)">
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-61.017274,-34.118825)"
+    <path
+       style="font-size:74.6667px;font-family:'Nova Square';-inkscape-font-specification:'Nova Square, Normal';font-variant-numeric:tabular-nums;letter-spacing:-3px;white-space:pre;fill:#585a57;stroke-width:13.2283;stroke-linecap:round;stroke-miterlimit:2"
+       d="m 286.9349,258.09015 v 23.33334 h 16.04168 q 5.46875,0 5.46875,-6.19792 v -10.9375 q 0,-6.19792 -5.46875,-6.19792 z m -7.29167,49.94794 v -54.68753 l 3.86459,-1.82292 h 19.46876 q 12.76042,0 12.76042,12.76043 v 10.9375 q 0,11.88543 -11.04688,12.68751 l 11.92188,17.09897 -6.41667,3.02604 h -0.36458 L 295.79428,287.986 h -8.85938 v 16.77084 l -6.92708,3.28125 z m 59.48962,-8.02084 h 11.30208 q 5.46876,0 5.46876,-6.19792 v -29.53126 q 0,-6.19792 -5.46876,-6.19792 h -11.30208 q -5.46876,0 -5.46876,6.19792 v 29.53126 q 0,6.19792 5.46876,6.19792 z m 0,6.5625 q -12.76043,0 -12.76043,-12.76042 v -29.53126 q 0,-12.76043 12.76043,-12.76043 h 11.30208 q 12.76043,0 12.76043,12.76043 v 29.53126 q 0,12.76042 -12.76043,12.76042 z"
        id="text1-6-7-5"
-       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:74.6667px;font-family:'Inter Display';-inkscape-font-specification:'Inter Display, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:tabular-nums;font-variant-east-asian:normal;text-align:start;letter-spacing:-3px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1-3-2-0);display:inline;fill:#585a57;fill-opacity:1;stroke-width:13.2283;stroke-linecap:round;stroke-miterlimit:2"><tspan
-         x="272.35156"
-         y="306.57975"
-         id="tspan2"><tspan
-           style="font-weight:normal;font-family:'Nova Square';-inkscape-font-specification:'Nova Square, Normal'"
-           id="tspan1">RO</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-22.004544,-34.118825)"
+       transform="matrix(0.26458333,0,0,0.26458333,-61.017274,-34.118825)"
+       aria-label="RO" />
+    <path
+       style="font-size:74.6667px;font-family:'Nova Square';-inkscape-font-specification:'Nova Square, Normal';font-variant-numeric:tabular-nums;letter-spacing:-3px;white-space:pre;fill:#585a57;stroke-width:13.2283;stroke-linecap:round;stroke-miterlimit:2"
+       d="m 279.64323,308.03809 v -43.75002 q 0,-12.76043 12.76043,-12.76043 h 11.30208 q 12.76043,0 12.76043,12.76043 v 40.46877 l -6.92709,3.28125 h -0.36458 v -25.66668 h -22.2396 v 22.38543 l -6.92708,3.28125 z m 7.29167,-32.3021 h 22.2396 v -11.44792 q 0,-6.19792 -5.46876,-6.19792 h -11.30208 q -5.46876,0 -5.46876,6.19792 z m 48.40628,-17.64584 v 23.33334 h 16.04167 q 5.46875,0 5.46875,-6.19792 v -10.9375 q 0,-6.19792 -5.46875,-6.19792 z m -7.29167,49.94794 v -54.68753 l 3.86458,-1.82292 h 19.46876 q 12.76042,0 12.76042,12.76043 v 10.9375 q 0,11.88543 -11.04688,12.68751 l 11.92188,17.09897 -6.41667,3.02604 h -0.36458 L 344.20055,287.986 h -8.85937 v 16.77084 l -6.92709,3.28125 z m 59.48961,-8.02084 h 11.30209 q 5.46875,0 5.46875,-6.19792 v -29.53126 q 0,-6.19792 -5.46875,-6.19792 h -11.30209 q -5.46875,0 -5.46875,6.19792 v 29.53126 q 0,6.19792 5.46875,6.19792 z m 0,6.5625 q -12.76042,0 -12.76042,-12.76042 v -29.53126 q 0,-12.76043 12.76042,-12.76043 h 11.30209 q 12.76042,0 12.76042,12.76043 v 29.53126 q 0,12.76042 -12.76042,12.76042 z"
        id="text1-3-0-0-5"
-       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:74.6667px;font-family:'Inter Display';-inkscape-font-specification:'Inter Display, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:tabular-nums;font-variant-east-asian:normal;text-align:start;letter-spacing:-3px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1-7-3-9-2);display:inline;fill:#585a57;fill-opacity:1;stroke-width:13.2283;stroke-linecap:round;stroke-miterlimit:2"><tspan
-         x="272.35156"
-         y="306.57975"
-         id="tspan4"><tspan
-           style="font-weight:normal;font-family:'Nova Square';-inkscape-font-specification:'Nova Square, Normal'"
-           id="tspan3">ARO</tspan></tspan></text>
+       transform="matrix(0.26458333,0,0,0.26458333,-22.004544,-34.118825)"
+       aria-label="ARO" />
     <path
        d="m 12.941366,28.910412 v 1.800407 h 24.611418 l 0.01343,7.476546 0.599964,0.590661 1.265556,-1.278991 -0.06666,-0.06563 -0.0155,-8.522994 z"
        style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#585a57;stroke-miterlimit:2;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
