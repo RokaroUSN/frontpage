@@ -33,13 +33,13 @@ export class Product {
         this.animatingRight = false;
     }
 
-    animateRight() {
+    animateRight(dur: number) {
        this.animatingRight = true;
-       setTimeout(()=>this.animatingRight = false, ANIMATE_RIGHT_DUR-5);
+       setTimeout(()=>this.animatingRight = false, dur-5);
     }
 
-    move() {
-        this.animateRight();
+    move(dur: number) {
+        this.animateRight(dur);
     }
 }
 

@@ -11,11 +11,11 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead' },
-  { id: '02', name: 'Emory Høyensahl', discipline: 'Mechanical', role: 'Developer' },
-  { id: '03', name: 'Egil Kanstad', discipline: 'Mechanical', role: 'Developer' },
-  { id: '04', name: 'Fredrik Skjelstad Ramskjell', discipline: 'Mechanical', role: 'Developer' },
-  { id: '05', name: 'Lisa Petrus', discipline: 'Mechatronics', role: 'Developer' },
-  { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Electrical', role: 'Developer' },
+  { id: '02', name: 'Emory Eugene Høyensahl', discipline: 'Computer', role: 'Member' },
+  { id: '03', name: 'Egil Kanstad', discipline: 'Mechanical', role: 'Member' },
+  { id: '04', name: 'Fredrik Skjelstad Ramskjell', discipline: 'Mechanical', role: 'Member' },
+  { id: '05', name: 'Lisa Petrus Fouad', discipline: 'Computer', role: 'Member' },
+  { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Computer', role: 'Member' },
 ]
 
 const scenarios = [
@@ -70,8 +70,7 @@ onMounted(() => {
           <span class="title-accent">Sorting Cell</span>
         </h1>
         <p class="hero-subtitle">
-          A collaboration between the University of South-Eastern Norway<br class="hide-mobile" />
-          and Tronrud Engineering
+          A project on behalf of Tronrud Engineering.
         </p>
         <div class="hero-tags">
           <span class="tag mono">Automation</span>
@@ -93,8 +92,14 @@ onMounted(() => {
 
     <DomainSimulationSection/>
 
+    <div class="wip-notice">
+      <div class="container">
+        <h2>Work in progress. Tune in later for more information.</h2>
+      </div>
+    </div>
+
     <!-- About Section -->
-    <section id="about" class="about">
+    <section v-if="false" id="about" class="about" >
       <div class="container">
         <div class="section-header">
           <span class="section-number mono">01</span>
@@ -318,7 +323,7 @@ onMounted(() => {
     <section id="team" class="team">
       <div class="container">
         <div class="section-header">
-          <span class="section-number mono">03</span>
+          <span class="section-number mono">02</span>
           <h2>The Team</h2>
         </div>
         <p class="team-intro">
@@ -350,6 +355,8 @@ onMounted(() => {
       <div class="container footer-content">
         <div class="footer-left">
           <img src="/logo.svg" alt="Rokaro" class="footer-logo" />
+          <img src="/te-logo.svg" alt="Tronrud Engineering" class="footer-logo"/>
+          <img src="/USN-icon.svg" alt="USN" class="footer-logo"/>
           <div class="footer-info">
             <span class="mono">Bachelor's Project 2026</span>
             <span>University of South-Eastern Norway</span>
@@ -896,6 +903,12 @@ onMounted(() => {
   }
 }
 
+.wip-notice {
+  padding: 1rem 0rem;
+  background: #e87070;
+  margin-top:2rem;
+}
+
 // ===== SCENARIOS =====
 .scenarios {
   &-list {
@@ -1102,8 +1115,8 @@ onMounted(() => {
 
 // ===== FOOTER =====
 .footer {
-  background: var(--color-text);
-  color: var(--color-white);
+  background: #a8a8a8;
+  color: black;
   padding: 3rem 0;
 
   &-content {
@@ -1120,7 +1133,7 @@ onMounted(() => {
 
   &-logo {
     height: 40px;
-    filter: brightness(0) invert(1);
+    //filter: brightness(0) invert(1);
   }
 
   &-info {

@@ -19,7 +19,7 @@ const scrollLength = computed(() => {
 })
 const scrolling = ref<HTMLElement | null>(null);
 const currectScrollSection = computed(()=>Math.floor(scrollLength.value / SECTION_HEIGHT))
-const currentPeriod = computed(()=>currectScrollSection.value < 2 ? 500 : 1000/(280000/60000))
+const currentPeriod = computed(()=>currectScrollSection.value < 1 ? 1000 : 1000/(280000/60000))
 const animSpeed = computed(()=>currentPeriod.value/1000 + "s");
 // Slot pattern: FS S S S FS (5 slots)
 // FS = fading, S = static visible
@@ -92,7 +92,7 @@ class Conveyor<P extends Product> {
       const product = this.slots[i];
       if (product) {
         product.opacity = this.getOpacityForIndex(i + 1);
-        product.move(); // Trigger slide animation
+        product.move(currentPeriod.value); // Trigger slide animation
         newSlots[i + 1] = product;
       }
     }
@@ -108,7 +108,7 @@ class Conveyor<P extends Product> {
 
     // New product at index 0 - coming from cell, starts at full opacity
     product.opacity = 1;
-    product.move(); // Trigger slide animation
+    product.move(currentPeriod.value); // Trigger slide animation
     newSlots[0] = product;
 
     // Shift existing - trigger move animation on each
@@ -116,7 +116,7 @@ class Conveyor<P extends Product> {
       const existing = this.slots[i];
       if (existing) {
         existing.opacity = this.getOpacityForIndex(i + 1);
-        existing.move(); // Trigger slide animation
+        existing.move(currentPeriod.value); // Trigger slide animation
         newSlots[i + 1] = existing;
       }
     }
@@ -326,15 +326,26 @@ onMounted(() => {
   </div>
   <div class="scroll-content">
     <div class="scroll-section basics">
-      <h3>The goal is simple</h3>
+      <div class="container">
+        <h3>The concept is straightforward,</h3>
+        <p>
+          Above is an interactive simulation of how our system will work in practice. It takes two inputs and mixes them according to a given prescription.
+        </p>
+      </div>
     </div>
     <div class="scroll-section challenges">
-      <h3>The goal is simple</h3>
+      <div class="container">
+        <h3>... The path to completion is not</h3>
+        <p>
+          The system will operate in an environment where speed and efficiency are key. Any failure causes delays in the entire production pipeline. It must handle these demanding conditions continuously over extended periods of time.
+        </p>
+      </div>
     </div>
     <div class="scroll-section speed">
-      <h3>All while handling 280 bags per minute</h3>
-      {{scrollY}}
-      {{currectScrollSection}}
+      <div class="container">
+        <h3>All while handling 280 products per minute</h3>
+        <p>That's almost five products per second.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -354,8 +365,37 @@ $maincont-height: 250px;
   .scroll-section {
     height: 300px;
 
+    p {
+      font-size: 1.2rem;
+    }
+
+    .container {
+      margin: 2.5rem 0;
+      h3 {
+        font-size: 2.5rem;
+        font-family: var(--font-display);
+      }
+    }
+
     &.basics {
-      background-color: #1b1c1b;
+      background-color: #cfcccc;
+      h3,p {
+        color: #343534 !important;
+      }
+    }
+
+    &.challenges {
+      background-color: #2b2a2a;
+      h3,p {
+        color: #b5b5b5 !important;
+      }
+    }
+
+    &.speed {
+      background-color: var(--color-primary);
+      h3,p {
+        color: white !important;
+      }
     }
   }
 }
@@ -380,12 +420,15 @@ $maincont-height: 250px;
       font-size: 1.3rem;
       border-radius: 0.2rem;
       border: solid 1px #3d3f3c;
-      background-color: rgba(0, 0, 0, 0);
+      background-color: rgb(81, 81, 80);
       color: #d4d4d3;
       font-family: monospace;
       padding: 0.1rem 0.2rem;
       text-align: center;
 
+      &:hover{
+        background-color: #404040;
+      }
       &:focus {
         outline: none;
         background-color: #2b2b2b;
@@ -398,7 +441,6 @@ $maincont-height: 250px;
 
 .scrollable-section {
   position: relative;
-  height: 100vh;
 }
 
 .row {
