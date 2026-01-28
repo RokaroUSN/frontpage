@@ -443,6 +443,9 @@ onMounted(() => {
 
   &-wrapper {
     padding: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -1188,6 +1191,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .header-content {
+    height: 100%;
     padding: 0.75rem 1.25rem;
   }
 

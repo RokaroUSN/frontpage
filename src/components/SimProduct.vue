@@ -55,4 +55,25 @@ const props = defineProps<{
 .shift-right {
   animation: shift-right-anim ease-in-out v-bind(animSpeed);
 }
+
+@media (max-width: 640px) {
+  .product-box {
+    height: 1.25rem;
+    width: 1.25rem;
+    border-width: 1.5px;
+
+    .label {
+      font-size: 0.7rem;
+    }
+  }
+
+  @keyframes shift-right-anim {
+    0% {
+      transform: translateX(-1.5rem);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
 </style>

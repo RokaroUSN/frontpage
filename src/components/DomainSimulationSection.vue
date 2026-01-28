@@ -511,4 +511,61 @@ $maincont-height: 250px;
     }
   }
 }
+
+// Mobile responsive styles
+@media (max-width: 640px) {
+  .main-container {
+    height: 180px;
+    padding: 1rem;
+
+    .conveyor-col {
+      gap: 0.5rem;
+
+      .row {
+        gap: 0.25rem;
+        margin: 0.25rem;
+      }
+
+      &.inputs .row {
+        transform: translateX(1.5rem);
+      }
+    }
+
+    .cell-collider {
+      width: 6rem;
+      height: 6rem;
+
+      .the-cell {
+        left: -0.8rem;
+        right: -0.8rem;
+      }
+    }
+  }
+
+  .the-cell .hmi {
+    gap: 0.5rem;
+
+    input {
+      width: 3.5rem;
+      font-size: 1rem;
+      margin: 0.3rem 0.5rem;
+    }
+  }
+
+  .scroll-content .scroll-section {
+    height: 300px;
+
+    .container {
+      margin: 1.5rem 0;
+
+      h3 {
+        font-size: 1.75rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
 </style>
