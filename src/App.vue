@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import {ref, onMounted, computed} from 'vue'
 import DomainSimulationSection from "./components/DomainSimulationSection.vue";
 
 interface TeamMember {
@@ -28,6 +28,34 @@ const scenarios = [
 
 const isLoaded = ref(false)
 
+type NavEntry = {
+  name: string;
+  hidden: string;
+}
+const navList: Map<string, NavEntry> = new Map([
+  ["about", {
+    name: "Project",
+    hidden: true,
+  }],
+  ["team", {
+    name: "Team",
+    hidden: false,
+  }]
+])
+
+const navListShown = computed<Map<string, NavEntry>>(()=>{
+  // Source - https://stackoverflow.com/a/46605880
+  // Posted by Estus Flask, modified by community. See post 'Timeline' for change history
+  // Retrieved 2026-01-30, License - CC BY-SA 4.0
+
+  return new Map(
+      [...navList.entries()]
+          .filter(([key, item]) => !item.hidden)
+  )
+
+})
+
+
 onMounted(() => {
   setTimeout(() => {
     isLoaded.value = true
@@ -44,13 +72,9 @@ onMounted(() => {
           <img src="/logo.svg" alt="Rokaro" class="logo" />
         </div>
         <nav class="nav">
-          <a href="#about" class="nav-link">
-            <span class="nav-index">01</span>
-            <span>Project</span>
-          </a>
-          <a href="#team" class="nav-link">
-            <span class="nav-index">02</span>
-            <span>Team</span>
+          <a v-for="([navId, nav], i) in navListShown" :href="'#' + navId" class="nav-link">
+            <span class="nav-index">0{{i + 1}}</span>
+            <span>{{nav.name}}</span>
           </a>
         </nav>
       </div>
@@ -323,7 +347,7 @@ onMounted(() => {
     <section id="team" class="team">
       <div class="container">
         <div class="section-header">
-          <span class="section-number mono">02</span>
+          <span class="section-number mono">{{[...navListShown.keys()].indexOf("team") + 1}}</span>
           <h2>The Team</h2>
         </div>
         <p class="team-intro">
