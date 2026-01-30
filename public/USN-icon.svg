@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="382"
+   height="254.66666"
+   viewBox="0 0 381.99999 254.66665"
+   sodipodi:docname="USN-icon.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#50505000"
+     bordercolor="#eeeeeeff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050ff"
+     inkscape:zoom="0.58895318"
+     inkscape:cx="252.14229"
+     inkscape:cy="127.34459"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer-MC0" />
+  <g
+     id="layer-MC0"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <path
+       id="path1"
+       d="M 0,0 C -8.25,13.25 -24.5,21.25 -40,29 -60,38.75 -79,48 -79,67.75 -79,89.5 -64,99.5 -42,99 -20,98.5 0,85.25 0,51 Z m 125,106.5 h -11 v -133 L 65,36.75 C 24.75,88.75 -2.75,109 -43.25,109 -75.25,109 -104,91.25 -104,58 c 0,-32.75 25.5,-44 49,-54.75 20,-9 38.75,-17.25 38.75,-38 0,-22.5 -21,-37.25 -52.75,-37.25 -38.75,0 -61.5,24.75 -61.5,66 v 112.5 h -31 v -107 c 0,-60.25 46.75,-81.5 92.5,-81.5 51.25,0 80,27.75 80,64.25 V 58 L 116.5,-79.5 h 8.5 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,215.33333,145.33333)" />
+  </g>
+</svg>
