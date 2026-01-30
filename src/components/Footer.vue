@@ -1,15 +1,17 @@
 <script setup lang="ts">
-
-import XDivider from "./XDivider.vue";
 </script>
 
 <template>
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-left">
-        <div style="gap: 2rem; display: flex;">
-          <img src="/te-logo-white-text.svg" alt="Tronrud Engineering" class="footer-logo"/>
-          <img src="/USN-logo_black-EN.svg" alt="USN" class="footer-logo white"/>
+        <div style="gap: 2rem; display: flex;" class="logo-row">
+          <a href="https://www.tronrud.no/">
+            <img src="/te-logo-white-text.svg" alt="Tronrud Engineering" class="footer-logo"/>
+          </a>
+          <a href="https://www.usn.no/">
+            <img src="/USN-logo_black-EN.svg" alt="USN" class="footer-logo white"/>
+          </a>
         </div>
       </div>
       <div class="footer-center">
@@ -65,6 +67,14 @@ import XDivider from "./XDivider.vue";
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    .logo-row {
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 
   &-right > div {
@@ -104,7 +114,7 @@ import XDivider from "./XDivider.vue";
 
   &-logo {
     height: 38px;
-    max-width: 210px;
+    max-width: 190px;
     margin-right: 1rem;
     &.white {
       filter: brightness(0) invert(1);
@@ -144,6 +154,15 @@ import XDivider from "./XDivider.vue";
       flex-direction: column;
       text-align: center;
     }
+
+    &-logo {
+       height: 30px;
+       max-width: 180px;
+       margin-right: 1rem;
+       &.white {
+         filter: brightness(0) invert(1);
+       }
+     }
 
     &-info {
       align-items: center;
