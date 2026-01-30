@@ -329,15 +329,15 @@ onMounted(() => {
       <div class="container">
         <h3>The concept is straightforward,</h3>
         <p>
-          Above is an interactive simulation of how our system will work in practice. It takes two inputs and mixes them according to a given prescription.
+          The figure above is an interactive simulation of how our system will operate in practice. It takes two inputs, mixes them according to a given prescription, and then routes them to the appropriate output.
         </p>
       </div>
     </div>
     <div class="scroll-section challenges">
       <div class="container">
-        <h3>... The path to completion is not</h3>
+        <h3>The path to completion is not without complexity,</h3>
         <p>
-          The system will operate in an environment where speed and efficiency are key. Any failure causes delays in the entire production pipeline. It must handle these demanding conditions continuously over extended periods of time.
+          The system will operate in an environment where speed and efficiency are key. Any failure causes delays in the entire production pipeline. It must therefore continuously handle these demanding conditions over extended periods while ensuring the correct output at all times.
         </p>
       </div>
     </div>
@@ -370,7 +370,7 @@ $maincont-height: 250px;
     }
 
     .container {
-      margin: 2.5rem 0;
+      padding: 2rem;
       h3 {
         font-size: 2.5rem;
         font-family: var(--font-display);
