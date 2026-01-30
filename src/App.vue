@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {ref, onMounted, computed} from 'vue'
 import DomainSimulationSection from "./components/DomainSimulationSection.vue";
+import Footer from "./components/Footer.vue";
 
-interface TeamMember {
+export interface TeamMember {
   name: string
   discipline: string
   role: string
@@ -360,41 +361,14 @@ onMounted(() => {
             :key="member.id"
             class="team-card"
           >
-            <div class="card-header">
-              <span class="member-id mono">{{ member.id }}</span>
-              <span class="member-discipline mono">{{ member.discipline }}</span>
-            </div>
-            <div class="card-body">
-              <h3 class="member-name">{{ member.name }}</h3>
-              <span class="member-role">{{ member.role }}</span>
-            </div>
-            <div class="card-decoration"></div>
+
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer-content">
-        <div class="footer-left">
-          <img src="/logo.svg" alt="Rokaro" class="footer-logo" />
-          <img src="/te-logo.svg" alt="Tronrud Engineering" class="footer-logo"/>
-          <img src="/USN-icon.svg" alt="USN" class="footer-logo"/>
-          <div class="footer-info">
-            <span class="mono">Bachelor's Project 2026</span>
-            <span>University of South-Eastern Norway</span>
-            <span>Tronrud Engineering</span>
-          </div>
-        </div>
-        <div class="footer-right">
-          <div class="footer-decoration">
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Footer/>
   </div>
 </template>
 
@@ -1115,92 +1089,6 @@ onMounted(() => {
   }
 }
 
-.member {
-  &-id {
-    font-size: 0.7rem;
-    color: var(--color-primary);
-    letter-spacing: 0.05em;
-  }
-
-  &-discipline {
-    font-size: 0.65rem;
-    color: var(--color-text-light);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  &-name {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  &-role {
-    font-size: 0.9rem;
-    color: var(--color-text-light);
-  }
-}
-
-// ===== FOOTER =====
-.footer {
-  background: var(--color-text);
-  color: var(--color-white);
-  padding: 3rem 0;
-
-  &-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &-left {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  &-logo {
-    height: 40px;
-    filter: brightness(0) invert(1);
-  }
-
-  &-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-size: 0.85rem;
-    opacity: 0.8;
-
-    span:first-child {
-      color: var(--color-primary-light);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-  }
-
-  &-decoration {
-    position: relative;
-    width: 50px;
-    height: 50px;
-
-    span {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 4px;
-
-      &:first-child {
-        background: var(--color-primary);
-        transform: translateY(-50%) rotate(45deg);
-      }
-
-      &:last-child {
-        background: rgba(255,255,255,0.3);
-        transform: translateY(-50%) rotate(-45deg);
-      }
-    }
-  }
-}
 
 // ===== RESPONSIVE =====
 @media (max-width: 1024px) {
