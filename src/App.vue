@@ -2,6 +2,7 @@
 import {ref, onMounted, computed} from 'vue'
 import DomainSimulationSection from "./components/DomainSimulationSection.vue";
 import Footer from "./components/Footer.vue";
+import MemberCard from "./components/MemberCard.vue";
 
 export interface TeamMember {
   name: string
@@ -356,13 +357,11 @@ onMounted(() => {
           collaborating on this bachelor's project.
         </p>
         <div class="team-grid">
-          <div
+          <MemberCard
             v-for="member in teamMembers"
             :key="member.id"
-            class="team-card"
-          >
-
-          </div>
+            :member="member"
+          />
         </div>
       </div>
     </section>
@@ -1044,50 +1043,9 @@ onMounted(() => {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  &-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s ease;
 
-    &:hover {
-      border-color: var(--color-primary);
-
-      .card-decoration {
-        background-position: 0 0;
-      }
-    }
-  }
 }
 
-.card {
-  &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-bg-light);
-  }
-
-  &-body {
-    padding: 1.5rem 1rem;
-  }
-
-  &-decoration {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 50%, transparent 50%);
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    transition: background-position 0.3s ease;
-  }
-}
 
 
 // ===== RESPONSIVE =====
