@@ -250,7 +250,9 @@ const update = (oConfig: OutputConfig, toProcess: Band): void => {
   }
 }
 
-const SECTION_HEIGHT = 300;
+
+const SECTION_HEIGHT = 340;
+const SECTION_HEIGHT_PX = SECTION_HEIGHT + "px";
 
 let toProcess: Band = Band.Up;
 const receipt1Text = ref("ABBA");
@@ -363,7 +365,7 @@ $maincont-height: 250px;
   flex-direction: column;
 
   .scroll-section {
-    height: 300px;
+    height: v-bind(SECTION_HEIGHT_PX);
 
     p {
       font-size: 1.2rem;
@@ -553,7 +555,6 @@ $maincont-height: 250px;
   }
 
   .scroll-content .scroll-section {
-    height: 300px;
 
     .container {
       margin: 1.5rem 0;
