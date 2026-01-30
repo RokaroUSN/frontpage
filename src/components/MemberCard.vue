@@ -8,19 +8,77 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="card-header">
-    <span class="member-id mono">{{ member.id }}</span>
-    <span class="member-discipline mono">{{ member.discipline }}</span>
+  <div class="member-card">
+    <div class="card-header">
+      <span class="member-id mono">{{ member.id }}</span>
+      <span class="member-discipline mono">{{ member.discipline }}</span>
+    </div>
+    <div class="card-body">
+      <div class="text-col">
+        <h3 class="member-name">{{ member.name }}</h3>
+        <span class="member-role">{{ member.role }}</span>
+      </div>
+      <div class="member-img"></div>
+    </div>
+    <div class="card-decoration"></div>
   </div>
-  <div class="card-body">
-    <h3 class="member-name">{{ member.name }}</h3>
-    <span class="member-role">{{ member.role }}</span>
-  </div>
-  <div class="card-decoration"></div>
 </template>
 
 <style scoped lang="scss">
+.member-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 
+  &:hover {
+    border-color: var(--color-primary);
+
+    .card-decoration {
+      background-position: 0 0;
+    }
+  }
+}
+
+.card {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-light);
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .text-col {
+      padding: 1.5rem 1rem;
+    }
+    .member-img {
+      width: 6rem;
+      min-height: 9rem;
+      background-color: rgba(163, 163, 163, 0.27);
+    }
+  }
+
+  &-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.3s ease;
+  }
+}
 
 .member {
   &-id {
