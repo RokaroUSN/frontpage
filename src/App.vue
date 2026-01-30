@@ -99,7 +99,7 @@ onMounted(() => {
     </div>
 
     <!-- About Section -->
-    <section v-if="true" id="about" class="about" >
+    <section v-if="false" id="about" class="about" >
       <div class="container">
         <div class="section-header">
           <span class="section-number mono">01</span>
