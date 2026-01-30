@@ -67,7 +67,7 @@ onMounted(() => {
         </div>
         <h1 class="hero-title">
           Industrial<br />
-          <span class="title-accent">Sorting Cell</span>
+          <span class="title-accent">Mixing Cell</span>
         </h1>
         <p class="hero-subtitle">
           A project on behalf of Tronrud Engineering.
@@ -99,7 +99,7 @@ onMounted(() => {
     </div>
 
     <!-- About Section -->
-    <section v-if="false" id="about" class="about" >
+    <section v-if="true" id="about" class="about" >
       <div class="container">
         <div class="section-header">
           <span class="section-number mono">01</span>
@@ -907,7 +907,7 @@ onMounted(() => {
 }
 
 .wip-notice {
-  padding: 1rem 0rem;
+  padding: 1rem 0;
   background: #e87070;
   margin-top:2rem;
 }
@@ -1118,8 +1118,8 @@ onMounted(() => {
 
 // ===== FOOTER =====
 .footer {
-  background: #a8a8a8;
-  color: black;
+  background: var(--color-text);
+  color: var(--color-white);
   padding: 3rem 0;
 
   &-content {
@@ -1136,7 +1136,7 @@ onMounted(() => {
 
   &-logo {
     height: 40px;
-    //filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
   }
 
   &-info {
