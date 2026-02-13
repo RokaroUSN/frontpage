@@ -4,19 +4,14 @@
 
 <template>
 <div class="main-row">
-  <!-- Having it overlay to have left part respect margins, a bit clunky tho -->
-  <div class="content-overlay container">
+  <div class="text-side">
     <div class="content">
       <h3>Hi, We are Rokaro!</h3>
       <p>We are a team of motivated engineering students from the mechanical and software disciplines. We have a shared enthusiasm for solving problems and effectivizing processes.</p>
       <p>Our goal is to design and simulate an industrial grade mixing cell, on behalf of Tronrud Engineering as case-provider.</p>
     </div>
-    <div class="mock-picture"></div>
   </div>
-  <div class="mock-content">
-
-  </div>
-  <div class="border-container">
+  <div class="image-side">
     <picture>
       <source media="(max-width: 600px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
       <img src="/public/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
@@ -26,8 +21,21 @@
 </template>
 
 <style scoped lang="scss">
+.main-row {
+  display: flex;
+}
+
+.text-side {
+  flex: 2;
+  // Replicate .container's left margin + padding so text aligns with other sections
+  padding-left: max(2rem, calc((100vw - 1200px) / 2 + 2rem));
+  padding-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
 .content {
-  padding-top: 2rem;
+  padding: 3rem 0;
 
   h3 {
     font-family: var(--font-display);
@@ -39,77 +47,64 @@
   }
 }
 
-.main-row {
-  display: flex;
-  flex-direction: row;
+.image-side {
+  flex: 3;
   position: relative;
+  // Ensure a reasonable minimum even if text is very short
+  min-height: 300px;
 
-  .content-overlay {
-    display: flex;
-    flex-direction: row;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    .content {
-      flex: 2;
-    }
-
-    .mock-picture {
-      flex: 3;
-    }
-  }
-
-  .container {
+  &::before {
+    content: '';
     position: absolute;
-  }
-
-  .mock-content {
-    flex: 2;
-  }
-  .border-container {
+    inset: 0;
     background-color: red;
     clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
-    flex: 3;
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin-left: 20px;
-      object-fit: cover;
-      object-position: 75% 50%;
-      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
-    }
+  }
+
+  img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    margin-left: 20px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .text-side {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main-row {
+    flex-direction: column;
+  }
 
   .content {
-
+    padding: 2rem 0 0 0;
     h3 {
       font-size: 2.4rem;
     }
   }
-  .main-row {
-    display: flex;
-    flex-direction: column;
 
-    div {
+  .image-side {
+    min-height: 350px;
+
+    &::before {
+      clip-path: polygon(0 5rem, 100% 0, 100% 100%, 0 100%);
     }
-    .border-container {
-      background-color: red;
-      clip-path: polygon(0 4rem, 100% 0, 100% 100%, 0 100%);
-      img {
-        display: block;
-        width: 100%;
-        margin-top: 1rem;
-        margin-left: 0;
-        object-fit: cover;
-        object-position: 75% 50%;
-        clip-path: polygon(0 4rem, 100% 0, 100% 100%, 0 100%);
-      }
+
+    img {
+      margin-left: 0;
+      margin-top: 1rem;
+      clip-path: polygon(0 5rem, 100% 0, 100% 100%, 0 100%);
+      object-position: 50% 100%;
     }
   }
 }
