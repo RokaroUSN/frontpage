@@ -18,22 +18,22 @@
       <p class="hero-subtitle">
         A project on behalf of Tronrud Engineering.
       </p>
-      <div class="hero-tags">
+<!--      <div class="hero-tags">
         <span class="tag mono">Automation</span>
         <span class="tag mono">Robotics</span>
         <span class="tag mono">Production</span>
-      </div>
+      </div>-->
     </div>
     <div class="hero-scroll">
       <span class="mono">Scroll</span>
       <div class="scroll-line"></div>
     </div>
-    <div class="hero-decoration">
+<!--    <div class="hero-decoration">
       <svg viewBox="0 0 100 100" class="deco-cross">
         <line x1="20" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
         <line x1="50" y1="20" x2="50" y2="80" stroke="currentColor" stroke-width="8" stroke-linecap="round" />
       </svg>
-    </div>
+    </div>-->
   </section>
 </template>
 
