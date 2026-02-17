@@ -1,5 +1,26 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { sprints, milestones, getSprintStatus, type Sprint, type Milestone } from '../data/sprints'
+
+declare global {
+  interface Window {
+    instgrm?: { Embeds: { process: () => void } }
+  }
+}
+
+onMounted(() => {
+  if (!sprints.some(s => s.instagramEmbed)) return
+
+  if (window.instgrm) {
+    window.instgrm.Embeds.process()
+  } else {
+    const script = document.createElement('script')
+    script.src = 'https://www.instagram.com/embed.js'
+    script.async = true
+    script.onload = () => window.instgrm?.Embeds.process()
+    document.body.appendChild(script)
+  }
+})
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-GB', {
@@ -27,6 +48,10 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
   const duration = sprint.endDate.getTime() - sprint.startDate.getTime()
   const offset = milestone.date.getTime() - sprint.startDate.getTime()
   return (offset / duration) * 100
+}
+
+function stripEmbedScript(html: string): string {
+  return html.replace(/<script[^>]*>.*?<\/script>/gi, '')
 }
 </script>
 
@@ -57,16 +82,19 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
               <div class="marker-dot"></div>
             </div>
 
-            <div class="sprint-card">
-              <div class="sprint-top">
-                <span class="sprint-number mono">Sprint {{ sprint.number }}</span>
-                <span class="sprint-badge mono" :class="getSprintStatus(sprint)">{{ getSprintStatus(sprint) }}</span>
+            <div class="sprint-card" :class="{ 'has-embed': sprint.instagramEmbed }">
+              <div class="sprint-content">
+                <div class="sprint-top">
+                  <span class="sprint-number mono">Sprint {{ sprint.number }}</span>
+                  <span class="sprint-badge mono" :class="getSprintStatus(sprint)">{{ getSprintStatus(sprint) }}</span>
+                </div>
+                <h3>{{ sprint.title }}</h3>
+                <div class="sprint-dates mono">
+                  {{ formatDate(sprint.startDate) }} → {{ formatDate(sprint.endDate) }}
+                </div>
+                <p class="sprint-description">{{ sprint.description }}</p>
               </div>
-              <h3>{{ sprint.title }}</h3>
-              <div class="sprint-dates mono">
-                {{ formatDate(sprint.startDate) }} → {{ formatDate(sprint.endDate) }}
-              </div>
-              <p class="sprint-description">{{ sprint.description }}</p>
+              <div v-if="sprint.instagramEmbed" class="sprint-embed" v-html="stripEmbedScript(sprint.instagramEmbed)"></div>
             </div>
 
             <!-- Milestones within this sprint -->
@@ -220,6 +248,35 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
   .completed & {
     border-left: 4px solid var(--color-text-light);
   }
+
+  &.has-embed {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+.sprint-embed {
+  flex-shrink: 0;
+  width: 326px;
+  border: 1px dotted var(--color-border);
+  padding: 0.75rem;
+  overflow: hidden;
+
+  :deep(iframe),
+  :deep(blockquote) {
+    border: none !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+.sprint-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .sprint-top {
@@ -411,6 +468,14 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
 
   .sprint-card {
     padding: 1.25rem 1.5rem;
+
+    &.has-embed {
+      flex-direction: column;
+    }
+  }
+
+  .sprint-embed {
+    width: 100%;
   }
 }
 </style>
