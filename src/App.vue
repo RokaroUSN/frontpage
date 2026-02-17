@@ -23,14 +23,6 @@ const teamMembers: TeamMember[] = [
   { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Computer', role: 'Member' },
 ]
 
-const scenarios = [
-  { icon: '01', text: 'What if a bag falls off the line?' },
-  { icon: '02', text: 'What if the upstream machine stops?' },
-  { icon: '03', text: 'What if the downstream machine stops?' },
-  { icon: '04', text: 'What if only input A or B stops?' },
-  { icon: '05', text: 'What if we experience internal failure?' }, // half visible
-]
-
 const isLoaded = ref(false)
 
 type NavEntry = {
