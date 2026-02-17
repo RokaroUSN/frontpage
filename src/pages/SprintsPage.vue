@@ -79,7 +79,7 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
             >
               <div class="milestone-diamond"></div>
               <div class="milestone-pill">
-                <svg xmlns="http://www.w3.org/2000/svg" class="milestone-icon" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M838.09-131v-640H121.91v281.91q0 19.16-13.17 32.33-13.17 13.17-32.33 13.17-19.15 0-32.32-13.17-13.18-13.17-13.18-32.33V-771q0-37.54 26.73-64.27Q84.38-862 121.91-862h716.18q37.53 0 64.27 26.73 26.73 26.73 26.73 64.27v554.5q0 35.27-26.73 60.38Q875.62-131 838.09-131ZM240.07-447.84q-49.16-49.27-49.16-118.86 0-69.58 49.16-118.74 49.15-49.15 118.73-49.15 69.59 0 118.86 49.15 49.27 49.16 49.27 118.74 0 69.59-49.27 118.86-49.27 49.27-118.86 49.27-69.58 0-118.73-49.27Zm173.21-64.38q22.65-22.65 22.65-54.47 0-31.81-22.65-54.35-22.65-22.55-54.47-22.55-31.81 0-54.35 22.55-22.55 22.54-22.55 54.35 0 31.82 22.55 54.47 22.54 22.65 54.35 22.65 31.82 0 54.47-22.65ZM121.91-62.3q-37.78 0-64.39-26.61T30.91-153.3v-29.61q0-36.24 18.58-66.61 18.58-30.37 49.73-46.33 62.71-31.24 127.66-46.98 64.95-15.74 131.92-15.74 67.44 0 132.52 15.62 65.07 15.62 127.31 46.86 31.15 15.96 49.73 46.25 18.57 30.3 18.57 66.93v29.61q0 37.78-26.6 64.39-26.61 26.61-64.4 26.61H121.91Zm0-91h474.02v-28.42q0-10.77-5.5-19.58-5.5-8.81-14.5-13.7-52.56-26.04-106.84-39.3-54.29-13.26-110.29-13.26-55.59 0-110.2 13.26Q194-241.04 141.91-215q-9 4.89-14.5 13.7-5.5 8.81-5.5 19.58v28.42ZM358.8-566.7Zm0 413.4Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="milestone-icon" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M282.87-391.87v234.5q0 19.15-13.17 32.33-13.18 13.17-32.33 13.17t-32.33-13.17q-13.17-13.18-13.17-32.33v-605.26q0-19.15 13.17-32.33 13.18-13.17 32.33-13.17h291.78q16.15 0 28.59 10.31 12.43 10.32 15.91 26.23l9.05 43.46h179.93q19.15 0 32.33 13.17 13.17 13.18 13.17 32.33v325.26q0 19.15-13.17 32.33-13.18 13.17-32.33 13.17H550.85q-16.15 0-28.59-10.31-12.43-10.32-15.91-26.23l-9.05-43.46H282.87Zm305.76-11h128.5v-234.26H544.91q-16.15 0-28.58-10.32-12.44-10.31-15.92-26.22l-9.04-43.46h-208.5v234.26h252.22q16.15 0 28.58 10.32 12.44 10.31 15.92 26.22l9.04 43.46ZM500-560Z"/></svg>
                 <span class="milestone-number mono">{{ ms.number }}</span>
                 <div class="milestone-tooltip">
                   <span class="tooltip-title">{{ ms.title }}</span>
@@ -153,7 +153,7 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
 .sprint-entry {
   position: relative;
   margin-bottom: 2.5rem;
-  margin-left: 2rem;
+  margin-left: 2.5rem;
 
   &:last-child {
     margin-bottom: 0;
@@ -162,13 +162,24 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
 
 .sprint-marker {
   position: absolute;
-  left: -4rem;
+  left: -4.5rem;
   top: 1.5rem;
   width: 1rem;
   height: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: calc(100% + 1px);
+    top: 50%;
+    width: calc(3.5rem - 1px);
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.5;
+  }
 }
 
 .marker-dot {
@@ -265,7 +276,7 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
 // ===== MILESTONE =====
 .milestone-entry {
   position: absolute;
-  left: -4rem;
+  left: -4.5rem;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
