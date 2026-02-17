@@ -16,19 +16,26 @@ const activeSprint = computed<Sprint | undefined>(() =>
       </div>
 
       <div class="sprint-card">
-        <div class="sprint-top">
-          <div class="sprint-meta">
-            <span class="sprint-badge active mono">Active</span>
-            <span class="sprint-dates mono">{{ activeSprint.startDate }} → {{ activeSprint.endDate }}</span>
-          </div>
-          <h3>{{ activeSprint.title }}</h3>
+        <div class="left-border">
+          <p>
+            SPRINT {{activeSprint.number}}
+          </p>
         </div>
-        <p class="sprint-description">{{ activeSprint.description }}</p>
-        <router-link :to="{ name: 'sprints' }" class="view-all">
-          View all sprints
-          <span class="arrow">→</span>
-        </router-link>
+        <div class="card-content">
+          <div class="sprint-top">
+            <div class="sprint-meta">
+              <span class="sprint-badge active mono">Active</span>
+              <span class="sprint-dates mono">{{ activeSprint.startDate }} → {{ activeSprint.endDate }}</span>
+            </div>
+            <h3>{{ activeSprint.title }}</h3>
+          </div>
+          <p class="sprint-description">{{ activeSprint.description }}</p>
+        </div>
       </div>
+      <router-link :to="{ name: 'sprints' }" class="view-all">
+        View all sprints
+        <span class="arrow">→</span>
+      </router-link>
     </div>
   </section>
 </template>
@@ -54,9 +61,30 @@ const activeSprint = computed<Sprint | undefined>(() =>
 .sprint-card {
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-primary);
-  padding: 2rem;
   max-width: 700px;
+  display: flex;
+  flex-direction: row;
+  .left-border {
+    background-color: var(--color-primary);
+    width: 14rem;
+    position: relative;
+    p {
+      transform: rotate(90deg) translateY(-100%);
+      transform-origin: 0 0;
+      position: absolute;
+      margin: 0;
+      padding-left: 0.4rem;
+      width: max-content;
+      top: 0;
+      left: 0;
+      color: white;
+      font-size: 2rem;
+      font-family: var(--font-display);
+    }
+  }
+  .card-content {
+    padding: 2rem;
+  }
 }
 
 .sprint-top {
