@@ -390,15 +390,23 @@ function getMilestonePercent(milestone: Milestone, sprint: Sprint): number {
 // ===== RESPONSIVE =====
 @media (max-width: 768px) {
   .timeline {
-    padding-left: 1.5rem;
+    padding-left: 1.25rem;
+  }
+
+  .sprint-entry {
+    margin-left: 1rem;
   }
 
   .sprint-marker {
-    left: -1.5rem;
+    left: -2.25rem;
+
+    &::after {
+      width: calc(1.25rem - 1px);
+    }
   }
 
   .milestone-entry {
-    left: -1.5rem;
+    left: -2.25rem;
   }
 
   .sprint-card {
