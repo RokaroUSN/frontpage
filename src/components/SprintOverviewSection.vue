@@ -12,7 +12,6 @@ const activeSprint = computed<Sprint | undefined>(() =>
     <div class="container">
       <div class="section-header">
         <span class="section-number mono">// CURRENT SPRINT</span>
-        <h2>Sprint {{ activeSprint.number }}</h2>
       </div>
 
       <div class="sprint-card">
@@ -43,13 +42,14 @@ const activeSprint = computed<Sprint | undefined>(() =>
 <style scoped lang="scss">
 .sprint-overview {
   background: var(--color-bg-light);
+  padding-top: 3rem;
 }
 
 .section-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .section-number {
@@ -66,7 +66,7 @@ const activeSprint = computed<Sprint | undefined>(() =>
   flex-direction: row;
   .left-border {
     background-color: var(--color-primary);
-    width: 14rem;
+    width: 15rem;
     position: relative;
     p {
       transform: rotate(90deg) translateY(-100%);
@@ -130,6 +130,7 @@ const activeSprint = computed<Sprint | undefined>(() =>
   font-size: 0.95rem;
   color: var(--color-primary);
   transition: gap 0.2s ease;
+  margin-top: 2rem;
 
   &:hover {
     gap: 0.75rem;

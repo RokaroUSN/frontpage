@@ -64,6 +64,7 @@
 <style scoped lang="scss">
 .project-brief {
   background: var(--color-white);
+  padding-bottom: 3rem; // a bit shorter to stay closer to current sprint section
 }
 
 .section-header {

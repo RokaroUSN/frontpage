@@ -31,12 +31,6 @@ const teamMembers: TeamMember[] = [
 
   <DomainSimulationSection/>
 
-  <div class="wip-notice">
-    <div class="container">
-      <h2>Work in progress. Tune in later for more information.</h2>
-    </div>
-  </div>
-
   <!-- Project Brief -->
   <ProjectBriefSection/>
 
