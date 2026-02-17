@@ -1,5 +1,11 @@
 <script setup lang="ts">
-
+const scenarios = [
+  { icon: '01', text: 'What if a bag falls off the line?' },
+  { icon: '02', text: 'What if the upstream machine stops?' },
+  { icon: '03', text: 'What if the downstream machine stops?' },
+  { icon: '04', text: 'What if only input A or B stops?' },
+  { icon: '05', text: 'What if we experience internal failure?' },
+]
 </script>
 
 <template>
@@ -10,21 +16,22 @@
         <h2>Project Description</h2>
       </div>
 
-      <!-- Row 1: Concept -->
+      <!-- Row 1: System Intro -->
       <div class="content-row">
         <div class="content-text">
-          <div class="row-label mono">// CONCEPT</div>
-          <h3>Configurable Sorting Logic</h3>
+          <div class="row-label mono">// SYSTEM INTRO</div>
+          <h3>Configurable Mixing Cell</h3>
           <p>
-            Rokaro develops an industrial sorting cell for Tronrud Engineering.
-            The cell receives products from two separate input lines (A and B) and
-            sorts them into two output lines based on a configurable sequence.
+            Rokaro is designing a mixing cell to be implemented in packaging production lines.
+            The cell receives products from two separate input lines, with one product variant each.
+            The cell mixes the two inputs to match a configurable sequence, and sends the product
+            down two output lines.
           </p>
           <p>
-            For example, the left output can be configured for sequence
-            <code class="code mono">AABBAA</code> while the right output receives
-            <code class="code mono">BBAABB</code>. This flexibility enables
-            customized sorting for various production requirements.
+            For instance, if the product variants are called product A and product B, the cell
+            can be configured to output the sequence <code class="code mono">AABB</code> for the
+            left output line, and <code class="code mono">BBBA</code> for the right output line.
+            Note that the total output does not need to balance the number of product variants.
           </p>
         </div>
         <div class="content-visual">
@@ -60,11 +67,11 @@
               <div class="flow-outputs">
                 <div class="flow-output">
                   <span class="flow-tag mono">OUT:L</span>
-                  <span class="flow-sequence mono">AABBAA</span>
+                  <span class="flow-sequence mono">AABB</span>
                 </div>
                 <div class="flow-output">
                   <span class="flow-tag mono">OUT:R</span>
-                  <span class="flow-sequence mono">BBAABB</span>
+                  <span class="flow-sequence mono">BBBA</span>
                 </div>
               </div>
             </div>
@@ -72,19 +79,22 @@
         </div>
       </div>
 
-      <!-- Row 2: Product -->
+      <!-- Row 2: Background -->
       <div class="content-row reverse">
         <div class="content-text">
-          <div class="row-label mono">// PRODUCT</div>
-          <h3>Bag Handling System</h3>
+          <div class="row-label mono">// BACKGROUND</div>
+          <h3>Case Packing for Snack Bags</h3>
           <p>
-            The sorting cell is designed to handle bags in a production line,
-            such as potato chip bags. Products arrive from two separate lines
-            and must be sorted and combined in the correct sequence for packaging.
+            Tronrud Engineering offers case packing solutions (secondary packaging) for a wide
+            variety of products. Among these are flexible bags used for snacks, which is what the
+            Rokaro mixing cell is designed for.
           </p>
           <p>
-            The system must handle varying speeds, different bag sizes, and ensure
-            products arrive in the correct sequence without damage.
+            A typical production line consists primarily of the bagmaker, responsible for packaging
+            the snacks, and the case packer, responsible for packing the bags into cases. However,
+            a producer might want different product variants packed in the same case, in a specific
+            sequence. That's where the mixing cell comes in, placed between the bagmaker and the
+            case packer.
           </p>
         </div>
         <div class="content-visual">
@@ -119,22 +129,87 @@
 
       <div class="section-header">
         <span class="section-number mono">02</span>
-        <h2>Our goal (what this entails)</h2>
+        <h2>Our Goal</h2>
       </div>
 
-      <!-- Row 3: Analysis -->
+      <!-- Row 3: Our Task -->
       <div class="content-row">
         <div class="content-text">
-          <div class="row-label mono">// ANALYSIS</div>
-          <h3>Scenario Testing</h3>
+          <div class="row-label mono">// OUR TASK</div>
+          <h3>System Architecture</h3>
           <p>
-            A significant part of the project involves analyzing various scenarios
-            that can occur in production. The sorting cell must be robust and handle
-            many different situations without causing stops or product loss.
+            The Rokaro team is designing the mixing cell, showing how we would solve the challenges
+            of this case, both mechanically and in software. Developing a strong concept on how to
+            do the logistics handling will give Tronrud Engineering a solid foundation to continue
+            developing and implementing. We are making some physical aspect of the system. This can
+            for example be one of the more complex subsystems, or a miniature version of the full system.
           </p>
           <p>
-            We conduct thorough analyses of potential failure situations and develop
-            strategies for how the system should respond in each case.
+            The Rokaro mixing cell preliminarily consists of four main components: the mixing unit
+            responsible for rearranging product variants into a configurable sequence, an HMI for
+            operator configuration and status monitoring, communication interfaces with other
+            production line cells, and a sensor suite for error detection and failure response protocols.
+          </p>
+        </div>
+        <div class="content-visual">
+          <div class="robust-box">
+            <div class="diagram-label mono">SYSTEM FEATURES</div>
+            <div class="features-grid">
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <span class="feature-label mono">Industrial Robustness</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M40-480v-80h80v80H40Zm800 0v-80h80v80h-80ZM40-640v-80h80v80H40Zm800 0v-80h80v80h-80ZM40-800v-80h80v80H40Zm160 320v-80h80v80h-80Zm480 0v-80h80v80h-80Zm160-320v-80h80v80h-80Zm-640 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM473-40q-24 0-46-9t-39-26L184-280l33-34q14-14 34-19t40 0l69 20v-327q0-17 11.5-28.5T400-680q17 0 28.5 11.5T440-640v433l-98-28 103 103q6 6 13 9t15 3h167q33 0 56.5-23.5T720-200v-160q0-17 11.5-28.5T760-400q17 0 28.5 11.5T800-360v160q0 66-47 113T640-40H473Zm7-280v-160q0-17 11.5-28.5T520-520q17 0 28.5 11.5T560-480v160h-80Zm120 0v-120q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440v120h-80Zm40 200H445h195Z"/></svg>
+                </div>
+                <span class="feature-label mono">280 BPM Throughput</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80l12-60q12-5 22.5-10.5T576-364l58 18 40-68-46-40q2-14 2-26t-2-26l46-40-40-68-58 18q-11-8-21.5-13.5T532-620l-12-60h-80l-12 60q-12 5-22.5 10.5T384-596l-58-18-40 68 46 40q-2 14-2 26t2 26l-46 40 40 68 58-18q11 8 21.5 13.5T428-340l12 60Zm40-120q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+                </div>
+                <span class="feature-label mono">Scenario Testing</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M16 13H8"/>
+                    <path d="M16 17H8"/>
+                  </svg>
+                </div>
+                <span class="feature-label mono">Real-Time Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: Robustness & Scenario Testing -->
+      <div class="content-row reverse">
+        <div class="content-text">
+          <div class="row-label mono">// ROBUSTNESS</div>
+          <h3>Robust, Reliable, and Effective</h3>
+          <p>
+            We at the Rokaro team strive towards designing a system that is reliable in an
+            industrial setting. The mixing cell needs to be engineered for robustness, ensuring
+            the system can operate in demanding industrial conditions. The mixing cell will be
+            able to handle 280 bpm (bags per minute), meaning that the system needs to work
+            efficiently, withstand the stresses this entails, and incorporate precise real-time
+            performance.
+          </p>
+          <p>
+            A significant part of the system involves analyzing various scenarios that can occur
+            during operation, with protocols in place for unwanted situations. This requires a
+            comprehensive sensor system to detect what and where failures have occurred, and the
+            ability to communicate with other components of the production line when action is
+            needed outside the mixing cell.
           </p>
         </div>
         <div class="content-visual">
@@ -150,61 +225,6 @@
                 <span class="scenario-num mono">{{ scenario.icon }}</span>
                 <span class="scenario-text">{{ scenario.text }}</span>
                 <span class="scenario-arrow">→</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 4: Robustness -->
-      <div class="content-row reverse">
-        <div class="content-text">
-          <div class="row-label mono">// DESIGN</div>
-          <h3>Robust Architecture</h3>
-          <p>
-            The goal is to develop a system that is reliable in an industrial setting.
-            This requires consideration of both normal operating conditions and
-            unexpected situations.
-          </p>
-          <p>
-            Through systematic testing and analysis, we ensure that the sorting cell
-            can be seamlessly integrated into existing production lines at Tronrud Engineering.
-          </p>
-        </div>
-        <div class="content-visual">
-          <div class="robust-box">
-            <div class="diagram-label mono">SYSTEM FEATURES</div>
-            <div class="features-grid">
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                </div>
-                <span class="feature-label mono">Error Handling</span>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M40-480v-80h80v80H40Zm800 0v-80h80v80h-80ZM40-640v-80h80v80H40Zm800 0v-80h80v80h-80ZM40-800v-80h80v80H40Zm160 320v-80h80v80h-80Zm480 0v-80h80v80h-80Zm160-320v-80h80v80h-80Zm-640 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM473-40q-24 0-46-9t-39-26L184-280l33-34q14-14 34-19t40 0l69 20v-327q0-17 11.5-28.5T400-680q17 0 28.5 11.5T440-640v433l-98-28 103 103q6 6 13 9t15 3h167q33 0 56.5-23.5T720-200v-160q0-17 11.5-28.5T760-400q17 0 28.5 11.5T800-360v160q0 66-47 113T640-40H473Zm7-280v-160q0-17 11.5-28.5T520-520q17 0 28.5 11.5T560-480v160h-80Zm120 0v-120q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440v120h-80Zm40 200H445h195Z"/></svg>
-                </div>
-                <span class="feature-label mono">Sensible Interface</span>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80l12-60q12-5 22.5-10.5T576-364l58 18 40-68-46-40q2-14 2-26t-2-26l46-40-40-68-58 18q-11-8-21.5-13.5T532-620l-12-60h-80l-12 60q-12 5-22.5 10.5T384-596l-58-18-40 68 46 40q-2 14-2 26t2 26l-46 40 40 68 58-18q11 8 21.5 13.5T428-340l12 60Zm40-120q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
-                </div>
-                <span class="feature-label mono">Durable Mechanisms</span>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <path d="M14 2v6h6"/>
-                    <path d="M16 13H8"/>
-                    <path d="M16 17H8"/>
-                  </svg>
-                </div>
-                <span class="feature-label mono">Event Logging</span>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import type {TeamMember} from "../App.vue";
+import type {TeamMember} from "../pages/HomePage.vue";
 
 const props = defineProps<{
   member: TeamMember
