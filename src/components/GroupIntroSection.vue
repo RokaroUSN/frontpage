@@ -13,10 +13,23 @@
   </div>
   <div class="image-side">
     <picture>
-      <source media="(max-width: 600px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
+      <source media="(max-width: 800px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
       <img src="/public/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
     </picture>
   </div>
+
+  <!-- SVG clip-paths are always anti-aliased, unlike CSS clip-path: polygon() -->
+  <svg width="0" height="0" aria-hidden="true" style="position: absolute;">
+    <defs>
+      <clipPath id="diagonal-desktop" clipPathUnits="objectBoundingBox">
+        <polygon points="0.3,0 1,0 1,1 0,1" />
+      </clipPath>
+      <clipPath id="diagonal-mobile" clipPathUnits="objectBoundingBox">
+        <!-- 5rem approximated as fraction; adjusted via CSS if needed -->
+        <polygon points="0,0.25 1,0 1,1 0,1" />
+      </clipPath>
+    </defs>
+  </svg>
 </div>
 </template>
 
@@ -49,43 +62,39 @@
 
 .image-side {
   flex: 3;
-  position: relative;
-  // Ensure a reasonable minimum even if text is very short
-  min-height: 300px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: red;
-    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
-  }
+  clip-path: url(#diagonal-desktop);
+  background-color: red;
 
   img {
     display: block;
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 60% 50%;
-    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
     margin-left: 20px;
+    clip-path: url(#diagonal-desktop);
+    // Force GPU compositing to avoid Chrome's nearest-neighbor interpolation
+    // bug with object-fit: cover (Chromium issue #40230839)
+    transform: translateZ(0);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .image-side {
+    img {
+      object-position: 48% 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .main-row {
+    flex-direction: column;
+  }
   .text-side {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
-}
-
-@media screen and (max-width: 800px) {
-  .main-row {
-    flex-direction: column;
-  }
-
   .content {
     padding: 2rem 0 0 0;
     h3 {
@@ -94,17 +103,14 @@
   }
 
   .image-side {
-    min-height: 350px;
-
-    &::before {
-      clip-path: polygon(0 5rem, 100% 0, 100% 100%, 0 100%);
-    }
+    clip-path: url(#diagonal-mobile);
 
     img {
       margin-left: 0;
       margin-top: 1rem;
-      clip-path: polygon(0 5rem, 100% 0, 100% 100%, 0 100%);
+      clip-path: url(#diagonal-mobile);
       object-position: 50% 100%;
+      max-height: 25rem;
     }
   }
 }
