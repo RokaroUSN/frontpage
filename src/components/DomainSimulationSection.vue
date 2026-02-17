@@ -10,16 +10,14 @@ enum Band {
 }
 
 const scrollTick = ref(0)
-const scrollLength = computed(() => {
+const scrolling = ref<HTMLElement | null>(null)
+const speedSection = ref<HTMLElement | null>(null)
+const isFastMode = computed(() => {
   scrollTick.value // 👈 dependency trigger
-
-  if (!scrolling.value) return 0
-
-  return 84 - scrolling.value.getBoundingClientRect().top
+  if (!speedSection.value) return false
+  return speedSection.value.getBoundingClientRect().top < window.innerHeight / 2
 })
-const scrolling = ref<HTMLElement | null>(null);
-const currectScrollSection = computed(()=>Math.floor(scrollLength.value / SECTION_HEIGHT))
-const currentPeriod = computed(()=>currectScrollSection.value < 1 ? 1000 : 1000/(280000/60000))
+const currentPeriod = computed(()=>isFastMode.value ? 1000/(280000/60000) : 1000)
 const animSpeed = computed(()=>currentPeriod.value/1000 + "s");
 // Slot pattern: FS S S S FS (5 slots)
 // FS = fading, S = static visible
@@ -251,9 +249,6 @@ const update = (oConfig: OutputConfig, toProcess: Band): void => {
 }
 
 
-const SECTION_HEIGHT = 340;
-const SECTION_HEIGHT_PX = SECTION_HEIGHT + "px";
-
 let toProcess: Band = Band.Up;
 const receipt1Text = ref("ABBA");
 const receipt2Text = ref("ABAB");
@@ -346,7 +341,7 @@ onMounted(() => {
   </div>
 
 </div>
-  <div class="scroll-section speed">
+  <div ref="speedSection" class="scroll-section speed">
     <div class="container">
       <h3>All while handling 280 products per minute</h3>
       <p>That's almost five products per second.</p>
@@ -368,7 +363,6 @@ $maincont-height: 250px;
 
 }
 .scroll-section {
-  height: v-bind(SECTION_HEIGHT_PX);
 
   p {
     font-size: 1.2rem;
