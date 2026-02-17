@@ -20,6 +20,19 @@ export function getSprintStatus(sprint: Sprint): SprintStatus {
   return 'upcoming'
 }
 
+export interface Milestone {
+  number: number
+  title: string
+  date: Date
+  approximate: boolean
+}
+
+export const milestones: Milestone[] = [
+  { number: 1, title: 'First presentation', date: new Date('2026-01-29'), approximate: false },
+  { number: 2, title: 'Second presentation', date: new Date('2026-03-19'), approximate: false },
+  { number: 3, title: 'Third and final presentation', date: new Date('2026-05-25'), approximate: true },
+]
+
 export const sprints: Sprint[] = [
   {
     number: 0,
