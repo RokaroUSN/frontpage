@@ -343,14 +343,15 @@ onMounted(() => {
         </p>
       </div>
     </div>
-    <div class="scroll-section speed">
-      <div class="container">
-        <h3>All while handling 280 products per minute</h3>
-        <p>That's almost five products per second.</p>
-      </div>
+  </div>
+
+</div>
+  <div class="scroll-section speed">
+    <div class="container">
+      <h3>All while handling 280 products per minute</h3>
+      <p>That's almost five products per second.</p>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped lang="scss">
@@ -364,44 +365,44 @@ $maincont-height: 250px;
   display: flex;
   flex-direction: column;
 
-  .scroll-section {
-    height: v-bind(SECTION_HEIGHT_PX);
 
-    p {
-      font-size: 1.2rem;
+}
+.scroll-section {
+  height: v-bind(SECTION_HEIGHT_PX);
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 2rem;
+    h3 {
+      font-size: 2.5rem;
+      font-family: var(--font-display);
     }
+  }
 
-    .container {
-      padding: 2rem;
-      h3 {
-        font-size: 2.5rem;
-        font-family: var(--font-display);
-      }
+  &.basics {
+    background-color: #cfcccc;
+    h3,p {
+      color: #343534 !important;
     }
+  }
 
-    &.basics {
-      background-color: #cfcccc;
-      h3,p {
-        color: #343534 !important;
-      }
+  &.challenges {
+    background-color: #2b2a2a;
+    h3,p {
+      color: #b5b5b5 !important;
     }
+  }
 
-    &.challenges {
-      background-color: #2b2a2a;
-      h3,p {
-        color: #b5b5b5 !important;
-      }
-    }
-
-    &.speed {
-      background-color: var(--color-primary);
-      h3,p {
-        color: white !important;
-      }
+  &.speed {
+    background-color: var(--color-primary);
+    h3,p {
+      color: white !important;
     }
   }
 }
-
 .the-cell {
   position: relative;
 
