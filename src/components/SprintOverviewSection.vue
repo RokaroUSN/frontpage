@@ -43,6 +43,7 @@ const activeSprint = computed<Sprint | undefined>(() =>
 .sprint-overview {
   background: var(--color-bg-light);
   padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .section-header {
