@@ -157,7 +157,22 @@ function formatDate(date: Date): string {
 
 @media (max-width: 768px) {
   .sprint-card {
-    padding: 1.5rem;
+    .left-border {
+      width: 28rem;
+      p {
+        transform: rotate(90deg) translateY(-100%);
+        transform-origin: 0 0;
+        position: absolute;
+        margin: 0;
+        padding-left: 0.4rem;
+        width: max-content;
+        top: 0;
+        left: 0;
+        color: white;
+        font-size: 1.2rem;
+        font-family: var(--font-display);
+      }
+    }
   }
 
   .section-header {
