@@ -15,7 +15,7 @@
           <p>
             Rokaro is designing a mixing cell for packaging production lines. The cell receives
             products from two input lines, mixes them to match a configurable sequence, and sends
-            the result down two output lines — enabling multi-variant case packing for snack bags.
+            the result down two output lines, enabling multi-variant case packing for snack bags.
           </p>
           <p>
             In collaboration with Tronrud Engineering, the team is developing the system architecture,

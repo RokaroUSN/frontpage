@@ -98,31 +98,8 @@ const scenarios = [
           </p>
         </div>
         <div class="content-visual">
-          <div class="conveyor-box">
-            <div class="diagram-label mono">CONVEYOR SIMULATION</div>
-            <div class="conveyor-track">
-              <div class="conveyor-belt">
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-                <div class="belt-segment"></div>
-              </div>
-              <div class="bags-container">
-                <div class="bag bag-a"><span class="mono">A</span></div>
-                <div class="bag bag-b"><span class="mono">B</span></div>
-                <div class="bag bag-a"><span class="mono">A</span></div>
-                <div class="bag bag-b"><span class="mono">B</span></div>
-                <div class="bag bag-a"><span class="mono">A</span></div>
-                <div class="bag bag-b"><span class="mono">B</span></div>
-              </div>
-              <div class="conveyor-wheel wheel-left"></div>
-              <div class="conveyor-wheel wheel-right"></div>
-            </div>
-            <div class="conveyor-label mono">Product flow direction →</div>
+          <div class="conveyor-box box-illustration-container">
+            <img src="/box-order-illustration.svg"/>
           </div>
         </div>
       </div>
@@ -331,6 +308,15 @@ const scenarios = [
   background: var(--color-bg-light);
   border: 1px solid var(--color-border);
   padding: 1.5rem;
+}
+
+.box-illustration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-height: 20rem;
+  }
 }
 
 .diagram-label {
