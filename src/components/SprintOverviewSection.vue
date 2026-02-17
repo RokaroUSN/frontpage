@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { sprints, type Sprint } from '../data/sprints'
+import { sprints, getSprintStatus, type Sprint } from '../data/sprints'
 
 const activeSprint = computed<Sprint | undefined>(() =>
-  sprints.find(s => s.status === 'active')
+  sprints.find(s => getSprintStatus(s) === 'active')
 )
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+}
 </script>
 
 <template>
@@ -24,7 +32,7 @@ const activeSprint = computed<Sprint | undefined>(() =>
           <div class="sprint-top">
             <div class="sprint-meta">
               <span class="sprint-badge active mono">Active</span>
-              <span class="sprint-dates mono">{{ activeSprint.startDate }} → {{ activeSprint.endDate }}</span>
+              <span class="sprint-dates mono">{{ formatDate(activeSprint.startDate) }} → {{ formatDate(activeSprint.endDate) }}</span>
             </div>
             <h3>{{ activeSprint.title }}</h3>
           </div>

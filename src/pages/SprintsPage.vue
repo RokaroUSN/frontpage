@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { sprints } from '../data/sprints'
+import { sprints, getSprintStatus } from '../data/sprints'
 
-function formatDate(date: string): string {
-  if (date === 'TBD') return 'TBD'
-  return new Date(date).toLocaleDateString('en-GB', {
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -32,7 +31,7 @@ function formatDate(date: string): string {
             v-for="sprint in sprints"
             :key="sprint.number"
             class="sprint-entry"
-            :class="sprint.status"
+            :class="getSprintStatus(sprint)"
           >
             <div class="sprint-marker">
               <div class="marker-dot"></div>
@@ -41,7 +40,7 @@ function formatDate(date: string): string {
             <div class="sprint-card">
               <div class="sprint-top">
                 <span class="sprint-number mono">Sprint {{ sprint.number }}</span>
-                <span class="sprint-badge mono" :class="sprint.status">{{ sprint.status }}</span>
+                <span class="sprint-badge mono" :class="getSprintStatus(sprint)">{{ getSprintStatus(sprint) }}</span>
               </div>
               <h3>{{ sprint.title }}</h3>
               <div class="sprint-dates mono">
