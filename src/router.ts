@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from './pages/HomePage.vue'
 
 const router = createRouter({
-  history: createWebHistory('/grupper/gruppe3-v26/'),
+  history: createWebHashHistory('/grupper/gruppe3-v26/'),
   routes: [
     {
       path: '/',
