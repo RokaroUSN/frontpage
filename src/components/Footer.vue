@@ -23,7 +23,7 @@
       <div class="footer-right">
         <div>
           <div class="mono highlight follow-us-label">
-            Følg oss:
+            Follow us:
           </div>
           <div class="links">
             <a href="https://www.instagram.com/rokaro_usn/">
