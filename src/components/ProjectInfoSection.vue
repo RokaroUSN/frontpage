@@ -53,7 +53,7 @@ const scenarios = [
                 </svg>
               </div>
               <div class="flow-cell">
-                <img src="/favicon.png" alt="Sorting Cell" />
+                <img src="/favicon.png" alt="Mixing Cell" />
                 <span class="mono">CELL</span>
               </div>
               <div class="flow-arrows">
