@@ -63,7 +63,7 @@
 .image-side {
   flex: 3;
   clip-path: url(#diagonal-desktop);
-  background-color: red;
+  background-color: var(--color-primary);
 
   img {
     display: block;

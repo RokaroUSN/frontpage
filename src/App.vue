@@ -6,8 +6,8 @@ const isLoaded = ref(false)
 
 const navLinks = [
   { label: 'Project', to: { name: 'home', hash: '#about' } },
+  { label: 'Sprints', to: { name: 'home', hash: '#sprint' } },
   { label: 'Team', to: { name: 'home', hash: '#team' } },
-  { label: 'Sprints', to: { name: 'sprints' } },
 ]
 
 onMounted(() => {

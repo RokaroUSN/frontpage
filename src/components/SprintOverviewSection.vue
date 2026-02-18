@@ -73,21 +73,22 @@ function formatDate(date: Date): string {
   max-width: 700px;
   display: flex;
   flex-direction: row;
+  clip-path: polygon( 0 12px, 12px 0, 100% 0, 100% 100%, 0 100%);
   .left-border {
     background-color: var(--color-primary);
-    width: 15rem;
+    width: 64px;
     position: relative;
     p {
       transform: rotate(90deg) translateY(-100%);
       transform-origin: 0 0;
       position: absolute;
       margin: 0;
-      padding-left: 0.4rem;
+      padding-left: 0.6rem;
       width: max-content;
       top: 0;
       left: 0;
       color: white;
-      font-size: 2rem;
+      font-size: 22px;
       font-family: var(--font-display);
     }
   }
@@ -136,7 +137,7 @@ function formatDate(date: Date): string {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   color: var(--color-primary);
   transition: gap 0.2s ease;
   margin-top: 2rem;
@@ -158,18 +159,18 @@ function formatDate(date: Date): string {
 @media (max-width: 768px) {
   .sprint-card {
     .left-border {
-      width: 28rem;
+      width: 32px;
       p {
         transform: rotate(90deg) translateY(-100%);
         transform-origin: 0 0;
         position: absolute;
         margin: 0;
-        padding-left: 0.4rem;
+        padding-left: 0.6rem;
         width: max-content;
         top: 0;
         left: 0;
         color: white;
-        font-size: 1.2rem;
+        font-size: 20px;
         font-family: var(--font-display);
       }
     }
