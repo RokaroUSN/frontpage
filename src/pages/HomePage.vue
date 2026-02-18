@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
   <ProjectBriefSection/>
 
   <!-- Current Sprint -->
-  <SprintOverviewSection/>
+  <SprintOverviewSection id="sprint"/>
 
   <!-- Divider -->
   <div class="section-divider">
@@ -51,7 +51,7 @@ const teamMembers: TeamMember[] = [
   <section id="team" class="team">
     <div class="container">
       <div class="section-header">
-        <span class="section-number mono">01</span>
+        <span class="section-number mono">03</span>
         <h2>The Team</h2>
       </div>
       <p class="team-intro">

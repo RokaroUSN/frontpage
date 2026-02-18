@@ -137,7 +137,7 @@ function formatDate(date: Date): string {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   color: var(--color-primary);
   transition: gap 0.2s ease;
   margin-top: 2rem;

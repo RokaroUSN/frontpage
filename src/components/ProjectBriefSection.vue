@@ -105,7 +105,7 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   color: var(--color-primary);
   margin-top: 0.5rem;
   transition: gap 0.2s ease;
