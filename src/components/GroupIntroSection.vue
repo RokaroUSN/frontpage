@@ -6,7 +6,7 @@
 <div class="main-row">
   <div class="text-side">
     <div class="content">
-      <h3>Hi, We are Rokaro!</h3>
+      <h3>Hi, we are Rokaro!</h3>
       <p>We are a team of motivated engineering students from the mechanical and software disciplines. We have a shared enthusiasm for solving problems and effectivizing processes.</p>
       <p>Our goal is to design and simulate an industrial grade mixing cell, on behalf of Tronrud Engineering as case-provider.</p>
     </div>
