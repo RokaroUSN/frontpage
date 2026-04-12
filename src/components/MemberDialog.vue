@@ -16,14 +16,30 @@ const emit = defineEmits<{
 const dialogRef = ref<HTMLDialogElement | null>(null)
 const visible = ref(false)
 
+const DIALOG_WIDTH = 520
+const GAP = 12
+
 const dialogPosition = computed(() => {
   if (!props.anchor) return {}
-  const cardRight = props.anchor.right
-  const cardTop = props.anchor.top
-  // Position dialog at the top-right corner of the card
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+
+  // Prefer right side of card, fall back to left if it would overflow
+  let left: number
+  if (props.anchor.right + GAP + DIALOG_WIDTH <= vw) {
+    left = props.anchor.right + GAP
+  } else {
+    left = props.anchor.left - GAP - DIALOG_WIDTH
+  }
+  // Clamp horizontal so it never goes off-screen
+  left = Math.max(GAP, Math.min(left, vw - DIALOG_WIDTH - GAP))
+
+  // Vertical: align to card top, clamp to viewport
+  const top = Math.max(GAP, Math.min(props.anchor.top, vh - 320))
+
   return {
-    marginTop: `${cardTop}px`,
-    marginLeft: `${cardRight + 12}px`,
+    marginTop: `${top}px`,
+    marginLeft: `${left}px`,
     marginRight: 'auto',
     marginBottom: 'auto',
   }
@@ -146,7 +162,7 @@ function onBackdropClick(e: MouseEvent) {
   border: 1px solid var(--color-border);
   position: relative;
   opacity: 1;
-  transform: translateY(12px);
+  transform: translateY(32px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 
   .visible & {
@@ -285,13 +301,14 @@ function onBackdropClick(e: MouseEvent) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1;
-    transform: scale(var(--photo-scale, 1)) translateX(150px);
-    transition: opacity 0.4s ease 0.15s, transform 0.2s ease-out;
+    opacity: 0;
+    transform: scale(var(--photo-scale, 1)) translateX(30px) ;
+    transition: opacity 0.3s step-start 0.15s, transform 0.2s ease-in;
 
     .visible & {
       opacity: 1;
-      transform: scale(var(--photo-scale, 1)) translateX(0);
+      transform: scale(var(--photo-scale, 1)) translateX(0) ;
+      transition: opacity 0.3s step-start 0.1s, transform 0.1s ease-out 0.1s;
     }
   }
 }
