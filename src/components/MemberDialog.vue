@@ -336,14 +336,20 @@ function onBackdropClick(e: MouseEvent) {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .member-dialog {
+    // Override JS-computed top/bottom margins to vertically center on mobile
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+
   .dialog-body {
     flex-direction: column-reverse;
   }
 
   .dialog-photo {
     width: 100%;
-    height: 180px;
+    height: 250px;
   }
 }
 </style>
