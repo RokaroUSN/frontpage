@@ -7,11 +7,12 @@ const baseUrl = import.meta.env.BASE_URL
 const props = defineProps<{
   member: TeamMember
   selected?: boolean
+  dialogSide?: 'right' | 'left'
 }>()
 </script>
 
 <template>
-  <div class="member-card" :class="{ selected }" role="button" tabindex="0">
+  <div class="member-card" :class="{ selected, 'dialog-right': dialogSide === 'right', 'dialog-left': dialogSide === 'left' }" role="button" tabindex="0">
     <div class="card-header">
       <span class="member-id mono">{{ member.id }}</span>
       <span class="member-discipline mono">{{ member.discipline }}</span>
@@ -49,12 +50,43 @@ const props = defineProps<{
 
   &.selected {
     border-color: var(--color-primary);
-    background: var(--color-bg-light);
-    filter: brightness(0.92);
 
     .card-decoration {
       background-position: 0 0;
     }
+  }
+
+  // Gray overlay that sweeps across the card
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(221 221 221);
+    z-index: 1;
+    pointer-events: none;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in;
+  }
+
+  &.selected.dialog-right::before {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.3s ease-out;
+  }
+
+  &.selected.dialog-left::before {
+    transform-origin: right;
+    transform: scaleX(1);
+    transition: transform 0.3s ease-out;
+  }
+
+  // When deselecting, reverse the direction
+  &.dialog-right::before {
+    transform-origin: right;
+  }
+
+  &.dialog-left::before {
+    transform-origin: left;
   }
 }
 

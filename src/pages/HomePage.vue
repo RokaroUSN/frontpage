@@ -21,6 +21,7 @@ export interface TeamMember {
 
 const selectedMember = ref<TeamMember | null>(null)
 const dialogAnchor = ref<DOMRect | null>(null)
+const dialogRef = ref<InstanceType<typeof MemberDialog> | null>(null)
 
 const teamMembers: TeamMember[] = [
   { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead', photoScale: 1 },
@@ -73,10 +74,12 @@ const teamMembers: TeamMember[] = [
           :key="member.id"
           :member="member"
           :selected="selectedMember?.id === member.id"
+          :dialog-side="selectedMember?.id === member.id ? dialogRef?.placedSide : undefined"
           @click="dialogAnchor = ($event.currentTarget as HTMLElement).getBoundingClientRect(); selectedMember = member"
         />
       </div>
       <MemberDialog
+        ref="dialogRef"
         :member="selectedMember"
         :anchor="dialogAnchor"
         @close="selectedMember = null; dialogAnchor = null"

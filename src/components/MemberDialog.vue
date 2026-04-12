@@ -15,6 +15,7 @@ const emit = defineEmits<{
 
 const dialogRef = ref<HTMLDialogElement | null>(null)
 const visible = ref(false)
+const placedSide = ref<'right' | 'left'>('right')
 
 const DIALOG_WIDTH = 520
 const GAP = 12
@@ -28,8 +29,10 @@ const dialogPosition = computed(() => {
   let left: number
   if (props.anchor.right + GAP + DIALOG_WIDTH <= vw) {
     left = props.anchor.right + GAP
+    placedSide.value = 'right'
   } else {
     left = props.anchor.left - GAP - DIALOG_WIDTH
+    placedSide.value = 'left'
   }
   // Clamp horizontal so it never goes off-screen
   left = Math.max(GAP, Math.min(left, vw - DIALOG_WIDTH - GAP))
@@ -44,6 +47,8 @@ const dialogPosition = computed(() => {
     marginBottom: 'auto',
   }
 })
+
+defineExpose({ placedSide })
 
 watch(() => props.member, async (member) => {
   if (member) {
