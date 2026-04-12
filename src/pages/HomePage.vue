@@ -7,30 +7,13 @@ import SprintOverviewSection from "../components/SprintOverviewSection.vue";
 import MemberCard from "../components/MemberCard.vue";
 import MemberDialog from "../components/MemberDialog.vue";
 import {ref} from "vue";
-
-export interface TeamMember {
-  name: string
-  discipline: string
-  role: string
-  id: string
-  photoScale?: number
-  email?: string
-  description?: string
-  linkedin?: string
-}
+import type {TeamMember} from "../data/members.ts";
+import {teamMembers} from "../data/members.ts";
 
 const selectedMember = ref<TeamMember | null>(null)
 const dialogAnchor = ref<DOMRect | null>(null)
 const dialogRef = ref<InstanceType<typeof MemberDialog> | null>(null)
 
-const teamMembers: TeamMember[] = [
-  { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead', photoScale: 1 },
-  { id: '02', name: 'Emory Eugene Høiensahl', discipline: 'Computer', role: 'Member', photoScale: 1 },
-  { id: '03', name: 'Egil Kanstad', discipline: 'Mechanical', role: 'Member', photoScale: 1 },
-  { id: '04', name: 'Fredrik Skjelstad Ramskjell', discipline: 'Mechanical', role: 'Member', photoScale: 1.1 },
-  { id: '05', name: 'Lisa Fouad Petrus', discipline: 'Computer', role: 'Member', photoScale: 1 },
-  { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Computer', role: 'Member', photoScale: 1 },
-]
 </script>
 
 <template>

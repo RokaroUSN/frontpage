@@ -338,9 +338,8 @@ function onBackdropClick(e: MouseEvent) {
 
 @media (max-width: 768px) {
   .member-dialog {
-    // Override JS-computed top/bottom margins to vertically center on mobile
-    margin-top: auto !important;
-    margin-bottom: auto !important;
+    // Override all JS-computed margins to fully center on mobile
+    margin: auto !important;
   }
 
   .dialog-body {
