@@ -11,15 +11,16 @@ export interface TeamMember {
   discipline: string
   role: string
   id: string
+  photoScale?: number
 }
 
 const teamMembers: TeamMember[] = [
-  { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead' },
-  { id: '02', name: 'Emory Eugene Høiensahl', discipline: 'Computer', role: 'Member' },
-  { id: '03', name: 'Egil Kanstad', discipline: 'Mechanical', role: 'Member' },
-  { id: '04', name: 'Fredrik Skjelstad Ramskjell', discipline: 'Mechanical', role: 'Member' },
-  { id: '05', name: 'Lisa Fouad Petrus', discipline: 'Computer', role: 'Member' },
-  { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Computer', role: 'Member' },
+  { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead', photoScale: 1 },
+  { id: '02', name: 'Emory Eugene Høiensahl', discipline: 'Computer', role: 'Member', photoScale: 1 },
+  { id: '03', name: 'Egil Kanstad', discipline: 'Mechanical', role: 'Member', photoScale: 1 },
+  { id: '04', name: 'Fredrik Skjelstad Ramskjell', discipline: 'Mechanical', role: 'Member', photoScale: 1.1 },
+  { id: '05', name: 'Lisa Fouad Petrus', discipline: 'Computer', role: 'Member', photoScale: 1 },
+  { id: '06', name: 'Syver Sandum Stensholt', discipline: 'Computer', role: 'Member', photoScale: 1 },
 ]
 </script>
 

@@ -2,6 +2,8 @@
 
 import type {TeamMember} from "../pages/HomePage.vue";
 
+const baseUrl = import.meta.env.BASE_URL
+
 const props = defineProps<{
   member: TeamMember
 }>()
@@ -18,7 +20,9 @@ const props = defineProps<{
         <h3 class="member-name">{{ member.name }}</h3>
         <span class="member-role">{{ member.role }}</span>
       </div>
-      <div class="member-img"></div>
+      <div class="member-img">
+        <img :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`" :style="member.photoScale ? { transform: `scale(${member.photoScale + 0.7})` } : undefined" />
+      </div>
     </div>
     <div class="card-decoration"></div>
   </div>
@@ -61,8 +65,12 @@ const props = defineProps<{
       padding: 1.5rem 1rem;
     }
     .member-img {
+      overflow: hidden;
+    }
+    img {
       width: 6rem;
-      min-height: 9rem;
+      height: 100%;
+      object-fit: cover;
       background-color: rgba(163, 163, 163, 0.27);
     }
   }
