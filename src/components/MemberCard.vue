@@ -2,13 +2,17 @@
 
 import type {TeamMember} from "../pages/HomePage.vue";
 
+const baseUrl = import.meta.env.BASE_URL
+
 const props = defineProps<{
   member: TeamMember
+  selected?: boolean
+  dialogSide?: 'right' | 'left'
 }>()
 </script>
 
 <template>
-  <div class="member-card">
+  <div class="member-card" :class="{ selected, 'dialog-right': dialogSide === 'right', 'dialog-left': dialogSide === 'left' }" role="button" tabindex="0">
     <div class="card-header">
       <span class="member-id mono">{{ member.id }}</span>
       <span class="member-discipline mono">{{ member.discipline }}</span>
@@ -18,7 +22,9 @@ const props = defineProps<{
         <h3 class="member-name">{{ member.name }}</h3>
         <span class="member-role">{{ member.role }}</span>
       </div>
-      <div class="member-img"></div>
+      <div class="member-img">
+        <img :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`" :style="member.photoScale ? { transform: `scale(${member.photoScale + 0.7})` } : undefined" />
+      </div>
     </div>
     <div class="card-decoration"></div>
   </div>
@@ -31,7 +37,8 @@ const props = defineProps<{
   padding: 0;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease, filter 0.3s ease;
 
   &:hover {
     border-color: var(--color-primary);
@@ -39,6 +46,47 @@ const props = defineProps<{
     .card-decoration {
       background-position: 0 0;
     }
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+
+    .card-decoration {
+      background-position: 0 0;
+    }
+  }
+
+  // Gray overlay that sweeps across the card
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(221 221 221);
+    z-index: 1;
+    pointer-events: none;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in;
+  }
+
+  &.selected.dialog-right::before {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.3s ease-out;
+  }
+
+  &.selected.dialog-left::before {
+    transform-origin: right;
+    transform: scaleX(1);
+    transition: transform 0.3s ease-out;
+  }
+
+  // When deselecting, reverse the direction
+  &.dialog-right::before {
+    transform-origin: right;
+  }
+
+  &.dialog-left::before {
+    transform-origin: left;
   }
 }
 
@@ -61,8 +109,12 @@ const props = defineProps<{
       padding: 1.5rem 1rem;
     }
     .member-img {
+      overflow: hidden;
+    }
+    img {
       width: 6rem;
-      min-height: 9rem;
+      height: 100%;
+      object-fit: cover;
       background-color: rgba(163, 163, 163, 0.27);
     }
   }
