@@ -5,6 +5,8 @@ import DomainSimulationSection from "../components/DomainSimulationSection.vue";
 import ProjectBriefSection from "../components/ProjectBriefSection.vue";
 import SprintOverviewSection from "../components/SprintOverviewSection.vue";
 import MemberCard from "../components/MemberCard.vue";
+import MemberDialog from "../components/MemberDialog.vue";
+import {ref} from "vue";
 
 export interface TeamMember {
   name: string
@@ -12,7 +14,13 @@ export interface TeamMember {
   role: string
   id: string
   photoScale?: number
+  email?: string
+  description?: string
+  linkedin?: string
 }
+
+const selectedMember = ref<TeamMember | null>(null)
+const dialogAnchor = ref<DOMRect | null>(null)
 
 const teamMembers: TeamMember[] = [
   { id: '01', name: 'Erling Østmo', discipline: 'Mechanical', role: 'Project Lead', photoScale: 1 },
@@ -64,8 +72,15 @@ const teamMembers: TeamMember[] = [
           v-for="member in teamMembers"
           :key="member.id"
           :member="member"
+          :selected="selectedMember?.id === member.id"
+          @click="dialogAnchor = ($event.currentTarget as HTMLElement).getBoundingClientRect(); selectedMember = member"
         />
       </div>
+      <MemberDialog
+        :member="selectedMember"
+        :anchor="dialogAnchor"
+        @close="selectedMember = null; dialogAnchor = null"
+      />
     </div>
   </section>
 </template>

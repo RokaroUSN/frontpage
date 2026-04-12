@@ -6,11 +6,12 @@ const baseUrl = import.meta.env.BASE_URL
 
 const props = defineProps<{
   member: TeamMember
+  selected?: boolean
 }>()
 </script>
 
 <template>
-  <div class="member-card">
+  <div class="member-card" :class="{ selected }" role="button" tabindex="0">
     <div class="card-header">
       <span class="member-id mono">{{ member.id }}</span>
       <span class="member-discipline mono">{{ member.discipline }}</span>
@@ -35,10 +36,21 @@ const props = defineProps<{
   padding: 0;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease, filter 0.3s ease;
 
   &:hover {
     border-color: var(--color-primary);
+
+    .card-decoration {
+      background-position: 0 0;
+    }
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+    background: var(--color-bg-light);
+    filter: brightness(0.92);
 
     .card-decoration {
       background-position: 0 0;
