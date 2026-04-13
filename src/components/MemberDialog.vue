@@ -131,11 +131,10 @@ function onBackdropClick(e: MouseEvent) {
           </a>
         </div>
 
-        <div class="dialog-photo">
+        <div class="dialog-photo" :style="{ '--photo-scale': member.photoScale ? member.photoScale + 0.3 : 1 }">
           <img
             :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`"
             :alt="member.name"
-            :style="{ '--photo-scale': member.photoScale ? member.photoScale + 0.3 : 1 }"
           />
         </div>
       </div>
@@ -301,18 +300,21 @@ function onBackdropClick(e: MouseEvent) {
   overflow: hidden;
   background-color: rgba(163, 163, 163, 0.27);
   position: relative;
+  display: flex;
+  justify-content: center;
 
   img {
-    width: 100%;
+    flex-shrink: 0;
+    width: calc(100% * var(--photo-scale, 1));
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(var(--photo-scale, 1)) translateX(30px) ;
+    transform: translateX(30px);
     transition: opacity 0.3s step-start 0.15s, transform 0.2s ease-in;
 
     .visible & {
       opacity: 1;
-      transform: scale(var(--photo-scale, 1)) translateX(0) ;
+      transform: translateX(0);
       transition: opacity 0.3s step-start 0.1s, transform 0.1s ease-out 0.1s;
     }
   }
