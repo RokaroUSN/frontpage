@@ -79,7 +79,7 @@
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   picture {
@@ -92,8 +92,6 @@
     height: 100%;
     width: auto;
     flex-shrink: 0;
-    // Nudge horizontal framing (replaces object-position: 60% 50%)
-    margin-right: -10%;
   }
 }
 
