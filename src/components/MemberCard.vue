@@ -22,8 +22,8 @@ const props = defineProps<{
         <h3 class="member-name">{{ member.name }}</h3>
         <span class="member-role">{{ member.role }}</span>
       </div>
-      <div class="member-img">
-        <img :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`" :style="member.photoScale ? { transform: `scale(${member.photoScale + 0.7})` } : undefined" />
+      <div class="member-img" :style="{ '--photo-scale': member.photoScale ? member.photoScale + 0.7 : 1 }">
+        <img :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`" />
       </div>
     </div>
     <div class="card-decoration"></div>
@@ -110,12 +110,17 @@ const props = defineProps<{
     }
     .member-img {
       overflow: hidden;
+      width: 8rem;
+      height: 12rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(163, 163, 163, 0.27);
     }
     img {
-      width: 6rem;
-      height: 100%;
-      object-fit: cover;
-      background-color: rgba(163, 163, 163, 0.27);
+      flex-shrink: 0;
+      width: calc(8rem * var(--photo-scale, 1));
+      height: auto;
     }
   }
 
