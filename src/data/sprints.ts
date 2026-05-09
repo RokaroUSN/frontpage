@@ -136,7 +136,7 @@ export const sprints: Sprint[] = [
     number: 11,
     title: 'Transition: -',
     startDate: new Date('2026-05-25'),
-    endDate: new Date('2026-05-31'),
+    endDate: new Date('2026-06-01'),
     description: undefined,
   }
 ]
