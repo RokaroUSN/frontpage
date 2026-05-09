@@ -12,10 +12,12 @@
     </div>
   </div>
   <div class="image-side">
-    <picture>
-      <source media="(max-width: 800px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
-      <img src="/public/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
-    </picture>
+    <div class="image-clip">
+      <picture>
+        <source media="(max-width: 800px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
+        <img src="/public/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
+      </picture>
+    </div>
   </div>
 
   <!-- SVG clip-paths are always anti-aliased, unlike CSS clip-path: polygon() -->
@@ -62,20 +64,36 @@
 
 .image-side {
   flex: 3;
-  clip-path: url(#diagonal-desktop);
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
   background-color: var(--color-primary);
+  overflow: hidden;
+  position: relative;
+
+  .image-clip {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  picture {
+    display: block;
+    height: 100%;
+  }
 
   img {
     display: block;
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: 60% 50%;
-    margin-left: 20px;
-    clip-path: url(#diagonal-desktop);
-    // Force GPU compositing to avoid Chrome's nearest-neighbor interpolation
-    // bug with object-fit: cover (Chromium issue #40230839)
-    transform: translateZ(0);
+    width: auto;
+    flex-shrink: 0;
+    // Nudge horizontal framing (replaces object-position: 60% 50%)
+    margin-right: -10%;
   }
 }
 
@@ -103,14 +121,21 @@
   }
 
   .image-side {
-    clip-path: url(#diagonal-mobile);
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
 
-    img {
+    .image-clip {
       margin-left: 0;
       margin-top: 1rem;
-      clip-path: url(#diagonal-mobile);
-      object-position: 50% 100%;
+      clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
       max-height: 25rem;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      margin-right: 0;
     }
   }
 }
