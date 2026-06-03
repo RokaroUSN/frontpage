@@ -1,14 +1,16 @@
 export const ANIMATE_RIGHT_DUR = 500;
 
-export enum Shape {
-    Square,
-    Circle
-}
+export const Shape = {
+    Square: 0,
+    Circle: 1,
+} as const;
+export type Shape = typeof Shape[keyof typeof Shape];
 
-export enum Prod {
-    A,
-    B
-}
+export const Prod = {
+    A: 0,
+    B: 1,
+} as const;
+export type Prod = typeof Prod[keyof typeof Prod];
 
 let productIdCounter = 0;
 

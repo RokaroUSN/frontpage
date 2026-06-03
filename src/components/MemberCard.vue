@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import type {TeamMember} from "../pages/HomePage.vue";
+import type {TeamMember} from "../data/members.ts";
 
 const baseUrl = import.meta.env.BASE_URL
 

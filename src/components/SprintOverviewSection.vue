@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { sprints, getSprintStatus, type Sprint } from '../data/sprints'
+import { sprints, getSprintStatus } from '../data/sprints'
 
-const activeSprint = computed<Sprint | undefined>(() =>
-  sprints.find(s => getSprintStatus(s) === 'active')
-)
+// Short label for the timeline: the subtitle after "Phase: Subtitle",
+// falling back to the phase when there is no meaningful subtitle.
+function shortTitle(title: string): string {
+  const [phase, ...rest] = title.split(': ')
+  const subtitle = rest.join(': ').trim()
+  if (!subtitle || subtitle === '-') return phase
+  return subtitle
+}
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-GB', {
@@ -16,31 +20,31 @@ function formatDate(date: Date): string {
 </script>
 
 <template>
-  <section v-if="activeSprint" class="sprint-overview">
+  <section class="sprint-overview">
     <div class="container">
       <div class="section-header">
-        <span class="section-number mono">// CURRENT SPRINT</span>
+        <span class="section-number mono">// SPRINTS</span>
       </div>
 
-      <div class="sprint-card">
-        <div class="left-border">
-          <p>
-            SPRINT {{activeSprint.number}}
-          </p>
-        </div>
-        <div class="card-content">
-          <div class="sprint-top">
-            <div class="sprint-meta">
-              <span class="sprint-badge active mono">Active</span>
-              <span class="sprint-dates mono">{{ formatDate(activeSprint.startDate) }} → {{ formatDate(activeSprint.endDate) }}</span>
-            </div>
-            <h3>{{ activeSprint.title }}</h3>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div
+          v-for="(sprint, i) in sprints"
+          :key="sprint.number"
+          class="dot-wrap"
+          :class="[getSprintStatus(sprint), i % 2 === 0 ? 'above' : 'below']"
+          :title="`Sprint ${sprint.number} — ${sprint.title} (${formatDate(sprint.startDate)} → ${formatDate(sprint.endDate)})`"
+        >
+          <span class="dot"></span>
+          <div class="dot-label">
+            <span class="dot-num mono">{{ sprint.number }}</span>
+            <span class="dot-title">{{ shortTitle(sprint.title) }}</span>
           </div>
-          <p class="sprint-description">{{ activeSprint.description }}</p>
         </div>
       </div>
+
       <router-link :to="{ name: 'sprints' }" class="view-all">
-        View all sprints
+        View sprint details
         <span class="arrow">→</span>
       </router-link>
     </div>
@@ -57,8 +61,9 @@ function formatDate(date: Date): string {
 .section-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .section-number {
@@ -67,80 +72,16 @@ function formatDate(date: Date): string {
   letter-spacing: 0.1em;
 }
 
-.sprint-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  max-width: 700px;
-  display: flex;
-  flex-direction: row;
-  clip-path: polygon( 0 12px, 12px 0, 100% 0, 100% 100%, 0 100%);
-  .left-border {
-    background-color: var(--color-primary);
-    width: 64px;
-    position: relative;
-    p {
-      transform: rotate(90deg) translateY(-100%);
-      transform-origin: 0 0;
-      position: absolute;
-      margin: 0;
-      padding-left: 0.6rem;
-      width: max-content;
-      top: 0;
-      left: 0;
-      color: white;
-      font-size: 22px;
-      font-family: var(--font-display);
-    }
-  }
-  .card-content {
-    padding: 2rem;
-  }
-}
-
-.sprint-top {
-  margin-bottom: 1rem;
-}
-
-.sprint-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.sprint-badge {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.6rem;
-  text-transform: uppercase;
-
-  &.active {
-    background: rgba(220, 78, 78, 0.1);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-  }
-}
-
-.sprint-dates {
-  font-size: 0.75rem;
-  color: var(--color-text-light);
-}
-
-.sprint-description {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--color-text);
-}
-
 .view-all {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
+  margin-top: 1.5rem;
   font-weight: 600;
   font-size: 1.3rem;
   color: var(--color-primary);
   transition: gap 0.2s ease;
-  margin-top: 2rem;
 
   &:hover {
     gap: 0.75rem;
@@ -156,28 +97,152 @@ function formatDate(date: Date): string {
   }
 }
 
-@media (max-width: 768px) {
-  .sprint-card {
-    .left-border {
-      width: 32px;
-      p {
-        transform: rotate(90deg) translateY(-100%);
-        transform-origin: 0 0;
-        position: absolute;
-        margin: 0;
-        padding-left: 0.6rem;
-        width: max-content;
-        top: 0;
-        left: 0;
-        color: white;
-        font-size: 20px;
-        font-family: var(--font-display);
-      }
-    }
+// ===== HORIZONTAL TIMELINE =====
+$dot-radius: 7px;
+$stem-height: 26px;
+
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 200px;
+  padding: 0 0.25rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0.25rem;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: var(--color-border);
+}
+
+.dot-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  z-index: 1;
+  cursor: default;
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2 * $dot-radius;
+  height: 2 * $dot-radius;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: var(--color-white);
+  transition: transform 0.15s ease;
+
+  .completed & {
+    background: var(--color-text-light);
+    border-color: var(--color-text-light);
   }
 
-  .section-header {
-    margin-bottom: 2rem;
+  .active & {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(220, 78, 78, 0.2);
+  }
+
+  .upcoming & {
+    background: var(--color-white);
+    border-color: var(--color-border);
+  }
+}
+
+.dot-wrap:hover .dot {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+// Connector stem between the dot and its label
+.dot-wrap::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: $stem-height;
+  background: var(--color-border);
+}
+
+.dot-wrap.above::after {
+  bottom: calc(50% + #{$dot-radius});
+}
+
+.dot-wrap.below::after {
+  top: calc(50% + #{$dot-radius});
+}
+
+// ===== LABELS (alternating above / below) =====
+.dot-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  text-align: center;
+}
+
+.dot-wrap.above .dot-label {
+  bottom: calc(50% + #{$dot-radius} + #{$stem-height});
+}
+
+.dot-wrap.below .dot-label {
+  top: calc(50% + #{$dot-radius} + #{$stem-height});
+}
+
+.dot-num {
+  font-size: 0.65rem;
+  color: var(--color-text-light);
+
+  .active & {
+    color: var(--color-primary);
+  }
+}
+
+.dot-title {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: var(--color-text);
+
+  .active & {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .upcoming & {
+    color: var(--color-text-light);
+  }
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 768px) {
+  .timeline {
+    height: 220px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .dot-title {
+    font-size: 0.62rem;
+  }
+
+  .dot-num {
+    font-size: 0.58rem;
   }
 }
 </style>
