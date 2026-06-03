@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HeroSection from "../components/HeroSection.vue";
+import ProjectConclusionSection from "../components/ProjectConclusionSection.vue";
 import GroupIntroSection from "../components/GroupIntroSection.vue";
 import DomainSimulationSection from "../components/DomainSimulationSection.vue";
 import ProjectBriefSection from "../components/ProjectBriefSection.vue";
@@ -19,6 +20,9 @@ const dialogRef = ref<InstanceType<typeof MemberDialog> | null>(null)
 <template>
   <!-- Hero Section -->
   <HeroSection/>
+
+  <!-- Project Concluded -->
+  <ProjectConclusionSection/>
 
   <GroupIntroSection/>
 
