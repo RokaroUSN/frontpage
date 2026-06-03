@@ -112,6 +112,7 @@ const props = defineProps<{
       overflow: hidden;
       width: 8rem;
       height: 12rem;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
