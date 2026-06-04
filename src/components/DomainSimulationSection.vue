@@ -17,7 +17,7 @@ const isFastMode = computed(() => {
   if (!speedSection.value) return false
   return speedSection.value.getBoundingClientRect().top < window.innerHeight / 2
 })
-const currentPeriod = computed(()=>isFastMode.value ? 1000/(280000/60000) : 1000)
+const currentPeriod = computed(()=>isFastMode.value ? 1000/(180000/60000) : 1000)
 const animSpeed = computed(()=>currentPeriod.value/1000 + "s");
 // Slot pattern: FS S S S FS (5 slots)
 // FS = fading, S = static visible
