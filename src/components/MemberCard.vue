@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import type {TeamMember} from "../pages/HomePage.vue";
+import type {TeamMember} from "../data/members.ts";
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -112,6 +112,7 @@ const props = defineProps<{
       overflow: hidden;
       width: 8rem;
       height: 12rem;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;

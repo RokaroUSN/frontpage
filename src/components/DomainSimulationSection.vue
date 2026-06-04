@@ -4,13 +4,13 @@ import SimProduct from "./SimProduct.vue";
 import {Prod, ProdA, ProdB, Product} from "../Product.ts";
 import {computed, onMounted, ref} from "vue";
 
-enum Band {
-  Up,
-  Down
-}
+const Band = {
+  Up: 0,
+  Down: 1,
+} as const;
+type Band = typeof Band[keyof typeof Band];
 
 const scrollTick = ref(0)
-const scrolling = ref<HTMLElement | null>(null)
 const speedSection = ref<HTMLElement | null>(null)
 const isFastMode = computed(() => {
   scrollTick.value // 👈 dependency trigger
@@ -289,7 +289,7 @@ onMounted(() => {
 </script>
 
 <template>
-<div ref="scrolling" class="scrollable-section">
+<div class="scrollable-section">
 
   <div class="main-container">
     <div class="conveyor-col inputs">

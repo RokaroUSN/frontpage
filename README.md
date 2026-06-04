@@ -1,5 +1,45 @@
-# Vue 3 + TypeScript + Vite
+# Rokaro bachelor project website
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Bachelor project website for Rokaro. Built with Vue 3, Vite and TypeScript.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Getting started
+
+This project uses [Bun](https://bun.sh) as its package manager and runtime.
+
+### Prerequisites
+
+Install Bun (see the [official guide](https://bun.sh/docs/installation) for other platforms):
+
+```sh
+curl -fsSL https://bun.sh/install | bash
+```
+
+### Install dependencies
+
+```sh
+bun install
+```
+
+### Develop
+
+Start the local dev server with hot module replacement:
+
+```sh
+bun run dev
+```
+
+### Build
+
+Type-check and produce a production build in the `dist/` directory:
+
+```sh
+bun run build
+```
+
+The contents of `dist/` are the build output that gets pushed to the university web area.
+
+You can preview the production build locally before deploying with:
+
+```sh
+bun run preview
+```
