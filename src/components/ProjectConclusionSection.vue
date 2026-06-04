@@ -12,8 +12,7 @@
           </div>
           <p class="conclusion-intro">
             After a semester of design, simulation, and iteration, the Rokaro bachelor's
-            project has reached its conclusion. Here are the resources that came out of our
-            work.
+            project has reached its conclusion. Here are the resulting resources.
           </p>
         </div>
 
