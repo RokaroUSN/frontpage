@@ -2,6 +2,10 @@
 
 Bachelor project website for Rokaro. Built with Vue 3, Vite and TypeScript.
 
+> [!NOTE]
+> This website was built with the assistance of AI tools. All architectural decisions
+> were made by humans, and AI-assisted contributions were reviewed by the team before being included.
+
 ## Getting started
 
 This project uses [Bun](https://bun.sh) as its package manager and runtime.

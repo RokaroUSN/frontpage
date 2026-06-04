@@ -50,24 +50,6 @@
             </div>
           </div>
 
-          <!-- Final presentation -->
-          <a
-            class="resource-card"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div class="resource-head">
-              <h3>Final Presentation</h3>
-              <span class="resource-tag mono">SLIDES</span>
-            </div>
-            <div class="resource-foot">
-              <p>
-                The slides from our third and final presentation.
-              </p>
-              <span class="resource-arrow">→</span>
-            </div>
-          </a>
         </div>
       </div>
     </div>

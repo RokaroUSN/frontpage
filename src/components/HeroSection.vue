@@ -45,7 +45,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url('/public/generic-factory-conveyor-belts-cropped.webp');
+  background-image: url('/generic-factory-conveyor-belts-cropped.webp');
   background-size: cover;
   background-position: center;
   overflow: hidden;
