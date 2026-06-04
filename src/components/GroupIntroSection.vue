@@ -14,8 +14,8 @@
   <div class="image-side">
     <div class="image-clip">
       <picture>
-        <source media="(max-width: 800px)" srcset="/public/gruppebilde-te-cropped-xs-mobile.webp" />
-        <img src="/public/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
+        <source media="(max-width: 800px)" srcset="/gruppebilde-te-cropped-xs-mobile.webp" />
+        <img src="/gruppebilde-te-widecrop-website-short.webp" alt="Group photo showing members of Rokaro" />
       </picture>
     </div>
   </div>
