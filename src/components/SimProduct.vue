@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 import {type Product, Shape} from "../Product.ts";
 
 const props = defineProps<{
@@ -8,7 +6,6 @@ const props = defineProps<{
   animSpeed: string;
 
 }>()
-
 </script>
 
 <template>
