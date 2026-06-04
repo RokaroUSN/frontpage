@@ -343,8 +343,8 @@ onMounted(() => {
 </div>
   <div ref="speedSection" class="scroll-section speed">
     <div class="container">
-      <h3>All while handling 280 products per minute</h3>
-      <p>That's almost five products per second.</p>
+      <h3>All while handling a high rate of products.</h3>
+      <p>Tested up to 180 products per minute for larger product sizes.</p>
     </div>
   </div>
 </template>
