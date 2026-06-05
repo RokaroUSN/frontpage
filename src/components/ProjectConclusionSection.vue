@@ -25,12 +25,12 @@
             rel="noopener noreferrer"
           >
             <div class="resource-head">
-              <h3>Administrative Tools</h3>
+              <h3>Codebase</h3>
               <span class="resource-tag mono">CODE</span>
             </div>
             <div class="resource-foot">
               <p>
-                Supporting tools and utilities developed during the project, published on GitHub.
+                Project repositories, including supporting tools and utilities, published on GitHub.
               </p>
               <span class="resource-arrow">→</span>
             </div>
