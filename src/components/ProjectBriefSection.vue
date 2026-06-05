@@ -31,28 +31,7 @@
           <div class="diagram-box">
             <div class="diagram-label mono">SYSTEM OVERVIEW</div>
             <div class="flow-diagram">
-              <div class="flow-inputs">
-                <div class="flow-input input-a">
-                  <span class="flow-tag mono">IN:A</span>
-                </div>
-                <div class="flow-input input-b">
-                  <span class="flow-tag mono">IN:B</span>
-                </div>
-              </div>
-              <div class="flow-cell">
-                <img src="/favicon.png" alt="Mixing Cell" />
-                <span class="mono">CELL</span>
-              </div>
-              <div class="flow-outputs">
-                <div class="flow-output">
-                  <span class="flow-tag mono">OUT:L</span>
-                  <span class="flow-sequence mono">AABB</span>
-                </div>
-                <div class="flow-output">
-                  <span class="flow-tag mono">OUT:R</span>
-                  <span class="flow-sequence mono">BBBA</span>
-                </div>
-              </div>
+              <img src="/flow-diagram-products.svg" alt="Product flow diagram"/>
             </div>
           </div>
         </div>
