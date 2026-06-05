@@ -38,42 +38,7 @@ const scenarios = [
           <div class="diagram-box">
             <div class="diagram-label mono">SYSTEM OVERVIEW</div>
             <div class="flow-diagram">
-              <div class="flow-inputs">
-                <div class="flow-input input-a">
-                  <span class="flow-tag mono">IN:A</span>
-                </div>
-                <div class="flow-input input-b">
-                  <span class="flow-tag mono">IN:B</span>
-                </div>
-              </div>
-              <div class="flow-arrows">
-                <svg viewBox="0 0 60 80" class="arrow-svg">
-                  <path d="M10 10 L30 40 L10 70" fill="none" stroke="var(--color-primary)" stroke-width="2" />
-                  <path d="M50 10 L30 40 L50 70" fill="none" stroke="var(--color-text)" stroke-width="2" />
-                </svg>
-              </div>
-              <div class="flow-cell">
-                <img src="/favicon.png" alt="Mixing Cell" />
-                <span class="mono">CELL</span>
-              </div>
-              <div class="flow-arrows">
-                <svg viewBox="0 0 60 80" class="arrow-svg">
-                  <path d="M30 40 L10 10" fill="none" stroke="var(--color-text)" stroke-width="2" />
-                  <path d="M30 40 L50 10" fill="none" stroke="var(--color-text)" stroke-width="2" />
-                  <path d="M30 40 L10 70" fill="none" stroke="var(--color-text)" stroke-width="2" />
-                  <path d="M30 40 L50 70" fill="none" stroke="var(--color-text)" stroke-width="2" />
-                </svg>
-              </div>
-              <div class="flow-outputs">
-                <div class="flow-output">
-                  <span class="flow-tag mono">OUT:L</span>
-                  <span class="flow-sequence mono">AABB</span>
-                </div>
-                <div class="flow-output">
-                  <span class="flow-tag mono">OUT:R</span>
-                  <span class="flow-sequence mono">BBBA</span>
-                </div>
-              </div>
+              <img src="/flow-diagram-products.svg" alt="Product flow diagram"/>
             </div>
           </div>
         </div>
@@ -177,7 +142,7 @@ const scenarios = [
             We at the Rokaro team strive towards designing a system that is reliable in an
             industrial setting. The mixing cell needs to be engineered for robustness, ensuring
             the system can operate in demanding industrial conditions. The mixing cell will be
-            able to handle 280 bpm (bags per minute), meaning that the system needs to work
+            able to handle 180 bpm (bags per minute), meaning that the system needs to work
             efficiently, withstand the stresses this entails, and incorporate precise real-time
             performance.
           </p>
