@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import {ref, watch, nextTick, computed} from 'vue'
+import {ref, computed} from 'vue'
 import type {TeamMember} from '../data/members.ts'
+import BaseDialog from './BaseDialog.vue'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -13,88 +14,27 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const dialogRef = ref<HTMLDialogElement | null>(null)
-const visible = ref(false)
-const placedSide = ref<'right' | 'left'>('right')
-
-const DIALOG_WIDTH = 520
-const GAP = 12
-
-const dialogPosition = computed(() => {
-  if (!props.anchor) return {}
-  const vw = window.innerWidth
-  const vh = window.innerHeight
-
-  // Prefer right side of card, fall back to left if it would overflow
-  let left: number
-  if (props.anchor.right + GAP + DIALOG_WIDTH <= vw) {
-    left = props.anchor.right + GAP
-    placedSide.value = 'right'
-  } else {
-    left = props.anchor.left - GAP - DIALOG_WIDTH
-    placedSide.value = 'left'
-  }
-  // Clamp horizontal so it never goes off-screen
-  left = Math.max(GAP, Math.min(left, vw - DIALOG_WIDTH - GAP))
-
-  // Vertical: align to card top, clamp to viewport
-  const top = Math.max(GAP, Math.min(props.anchor.top, vh - 320))
-
-  return {
-    marginTop: `${top}px`,
-    marginLeft: `${left}px`,
-    marginRight: 'auto',
-    marginBottom: 'auto',
-  }
-})
+const baseDialogRef = ref<InstanceType<typeof BaseDialog> | null>(null)
+const placedSide = computed(() => baseDialogRef.value?.placedSide ?? 'right')
 
 defineExpose({ placedSide })
-
-watch(() => props.member, async (member) => {
-  if (member) {
-    await nextTick()
-    dialogRef.value?.showModal()
-    requestAnimationFrame(() => {
-      visible.value = true
-    })
-  } else {
-    visible.value = false
-  }
-})
-
-function close() {
-  visible.value = false
-  setTimeout(() => {
-    dialogRef.value?.close()
-    emit('close')
-  }, 300)
-}
-
-function onBackdropClick(e: MouseEvent) {
-  if (e.target === dialogRef.value) {
-    close()
-  }
-}
 </script>
 
 <template>
-  <dialog
-    v-if="member"
-    ref="dialogRef"
-    class="member-dialog"
-    :class="{ visible }"
-    :style="dialogPosition"
-    @click="onBackdropClick"
-    @cancel.prevent="close"
+  <BaseDialog
+    ref="baseDialogRef"
+    :open="!!member"
+    :anchor="anchor"
+    @close="emit('close')"
   >
-    <div class="dialog-container">
-      <div class="dialog-header">
+    <template #default="{ close, visible }">
+      <div v-if="member" class="dialog-header">
         <span class="dialog-id mono">{{ member.id }}</span>
         <span class="dialog-discipline mono">{{ member.discipline }}</span>
         <button class="dialog-close" @click="close" aria-label="Close">&times;</button>
       </div>
 
-      <div class="dialog-body">
+      <div v-if="member" class="dialog-body">
         <div class="dialog-info">
           <h2 class="dialog-name">{{ member.name }}</h2>
           <div class="dialog-underline"></div>
@@ -131,50 +71,18 @@ function onBackdropClick(e: MouseEvent) {
           </a>
         </div>
 
-        <div class="dialog-photo" :style="{ '--photo-scale': member.photoScale ? member.photoScale + 0.3 : 1 }">
+        <div class="dialog-photo" :class="{ visible }" :style="{ '--photo-scale': member.photoScale ? member.photoScale + 0.3 : 1 }">
           <img
             :src="`${baseUrl}member-photos/${member.name.split(' ')[0]}.webp`"
             :alt="member.name"
           />
         </div>
       </div>
-    </div>
-  </dialog>
+    </template>
+  </BaseDialog>
 </template>
 
 <style scoped lang="scss">
-.member-dialog {
-  border: none;
-  padding: 0;
-  background: transparent;
-  max-width: 520px;
-  width: 90vw;
-  overflow: visible;
-
-  &::backdrop {
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
-  }
-
-  &.visible::backdrop {
-    background: rgba(0, 0, 0, 0.3);
-  }
-}
-
-.dialog-container {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  position: relative;
-  opacity: 1;
-  transform: translateY(32px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-
-  .visible & {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -311,39 +219,16 @@ function onBackdropClick(e: MouseEvent) {
     opacity: 0;
     transform: translateX(30px);
     transition: opacity 0.3s step-start 0.15s, transform 0.2s ease-in;
-
-    .visible & {
-      opacity: 1;
-      transform: translateX(0);
-      transition: opacity 0.3s step-start 0.1s, transform 0.1s ease-out 0.1s;
-    }
   }
-}
 
-// Bottom decoration line matching the card style
-.dialog-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 50%, transparent 50%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  transition: background-position 0.4s ease 0.2s;
-
-  .visible & {
-    background-position: 0 0;
+  &.visible img {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s step-start 0.1s, transform 0.1s ease-out 0.1s;
   }
 }
 
 @media (max-width: 768px) {
-  .member-dialog {
-    // Override all JS-computed margins to fully center on mobile
-    margin: auto !important;
-  }
-
   .dialog-body {
     flex-direction: column-reverse;
   }

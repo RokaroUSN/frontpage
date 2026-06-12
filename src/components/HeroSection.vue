@@ -1,5 +1,14 @@
 <script setup lang="ts">
+import {ref} from 'vue'
+import BaseDialog from './BaseDialog.vue'
 
+const awardOpen = ref(false)
+const awardAnchor = ref<DOMRect | null>(null)
+
+function openAward(e: MouseEvent) {
+  awardAnchor.value = (e.currentTarget as HTMLElement).getBoundingClientRect()
+  awardOpen.value = true
+}
 </script>
 
 <template>
@@ -29,7 +38,7 @@
       <div class="deco fade-in">
         <div v-for="i in 4" style="" :style="{opacity: (100-20*i)+'%'}"></div>
       </div>
-      <div>
+      <div @click="openAward">
         <div class="award-intro">kåret til</div>
         <div class="award-text">Beste tekniske <br/> løsning</div>
         <div class="award-outro">2026</div>
@@ -38,6 +47,26 @@
         <div v-for="i in 4" style="" :style="{opacity: (100-20*i)+'%'}"></div>
       </div>
     </div>
+    <BaseDialog
+      :open="awardOpen"
+      :anchor="awardAnchor"
+      @close="awardOpen = false; awardAnchor = null"
+    >
+      <template #default="{ close }">
+        <div class="award-dialog-header">
+          <span class="award-dialog-label mono">Beste tekniske løsning · 2026</span>
+          <button class="award-dialog-close" @click="close" aria-label="Close">&times;</button>
+        </div>
+        <div class="award-dialog-body">
+          <h2 class="award-dialog-title">Begrunnelse</h2>
+          <div class="award-dialog-underline"></div>
+          <blockquote class="award-dialog-quote">
+            <span class="award-dialog-quote-mark" aria-hidden="true">&ldquo;</span>
+            Denne gruppa satte seg godt inn i kundens behov for å komme med et konsept som forbedret dagens løsning på mange måter. Oppdragsgiveren ble mektig imponert da studentene demonstrerte konseptet, et brukergrensesnitt som knyttet en fysisk prototype til en digital simulering. Ved å anvende teori og matematikk, sammen med simulering, har de gitt bedriften ny innsikt som kan gi umiddelbar økt produktivitet. Dette vil bedriften si er et godt eksempel på fremragende ingeniørskap.
+          </blockquote>
+        </div>
+      </template>
+    </BaseDialog>
     <div class="hero-scroll">
       <span class="mono">Scroll</span>
       <div class="scroll-line"></div>
@@ -64,6 +93,7 @@
   background-position: center;
   overflow: hidden;
 
+
   &-grid {
     position: absolute;
     inset: 0;
@@ -84,7 +114,7 @@
   &-content {
     position: relative;
     z-index: 3;
-    padding-top: 80px;
+    //padding-top: 80px;
   }
 
   &-label {
@@ -161,7 +191,7 @@
     }
 
     & > *:not(.deco) {
-      background: rgb(182 36 36 / 0.48);
+      background: rgb(246 49 49 / 0.38);
       //border: 1px solid rgb(255 0 0 / 0.65);
       color: white;
       width: auto;
@@ -179,6 +209,7 @@
         font-size: 1.3rem;
         line-height: 1;
         font-weight: 600;
+        text-wrap-mode: nowrap;
       }
 
       .award-outro {
@@ -247,5 +278,96 @@
 
 .hide-mobile {
   display: inline;
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 768px) {
+  .hero {
+    align-items: flex-start;
+
+    &-content {
+      padding-top: 120px;
+    }
+
+    &-scroll {
+      display: none;
+    }
+
+    &-awards {
+      bottom: 3rem;
+    }
+  }
+}
+
+// ===== AWARD DIALOG =====
+.award-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-light);
+}
+
+.award-dialog-label {
+  font-size: 0.65rem;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.award-dialog-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.award-dialog-body {
+  padding: 2rem 1.5rem;
+}
+
+.award-dialog-title {
+  font-size: 1.4rem;
+  font-family: var(--font-display);
+  margin-bottom: 0.25rem;
+}
+
+.award-dialog-underline {
+  width: 40px;
+  height: 2px;
+  background: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.award-dialog-quote {
+  position: relative;
+  margin: 0;
+  padding-left: 2.75rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+.award-dialog-quote-mark {
+  position: absolute;
+  top: -0.35em;
+  left: -0.1rem;
+  font-family: Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.85;
+  pointer-events: none;
 }
 </style>
