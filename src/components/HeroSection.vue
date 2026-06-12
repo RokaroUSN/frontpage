@@ -18,11 +18,25 @@
       <p class="hero-subtitle">
         A project on behalf of Tronrud Engineering.
       </p>
+
 <!--      <div class="hero-tags">
         <span class="tag mono">Automation</span>
         <span class="tag mono">Robotics</span>
         <span class="tag mono">Production</span>
       </div>-->
+    </div>
+    <div class="hero-awards">
+      <div class="deco fade-in">
+        <div v-for="i in 4" style="" :style="{opacity: (100-20*i)+'%'}"></div>
+      </div>
+      <div>
+        <div class="award-intro">kåret til</div>
+        <div class="award-text">Beste tekniske <br/> løsning</div>
+        <div class="award-outro">2026</div>
+      </div>
+      <div class="deco fade-out">
+        <div v-for="i in 4" style="" :style="{opacity: (100-20*i)+'%'}"></div>
+      </div>
     </div>
     <div class="hero-scroll">
       <span class="mono">Scroll</span>
@@ -110,6 +124,69 @@
     line-height: 1.7;
     margin-bottom: 2rem;
     animation: slideIn 0.8s ease 0.6s both;
+  }
+
+  &-awards {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+
+
+
+    .deco {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 1rem;
+      margin-left: 1rem;
+      &>* {
+        border-left: solid 1px var(--color-primary);
+        transition: border-left ease-in-out 50ms;
+      }
+      &.fade-in {
+        flex-direction: row-reverse;
+        margin-right: 1rem;
+      }
+    }
+
+    &:hover .deco {
+      &>* {
+        border-left: solid 3px var(--color-primary);
+      }
+    }
+
+    & > *:not(.deco) {
+      background: rgb(182 36 36 / 0.48);
+      //border: 1px solid rgb(255 0 0 / 0.65);
+      color: white;
+      width: auto;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      user-select: none;
+
+      .award-intro {
+        font-family: var(--font-mono);
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      .award-text {
+        font-size: 1.3rem;
+        line-height: 1;
+        font-weight: 600;
+      }
+
+      .award-outro {
+        font-family: var(--font-mono);
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+    }
   }
 
   &-tags {
